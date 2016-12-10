@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm build && node dist/app.js",
-    "dev-start": "node dist/app.js",
+    "start": "npm build && node app.js",
+    "dev-start": "node app.js",
     "build": "webpack --config ./webpack.deployment.config.js --progress --colors"
   },
   "repository": {
