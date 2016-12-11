@@ -1,5 +1,5 @@
 import Category from '../models/category';
-
+import Good from '../models/good';
 
 // Get all categories
 
@@ -44,13 +44,22 @@ export function getCategory(req, res) {
 // Delete a category
 
 export function deleteCategory(req, res) {
-  Category.findOne({ _id: req.params.id }).exec((err, category) => {
-    if (err) {
-      res.status(500).send(err);
+  Category.findOne({ _id: req.params.id }).exec((findErr, category) => {
+    if (findErr) {
+      res.status(500).send(findErr);
     }
 
     category.remove(() => {
-      res.status(200).end();
+
+
+    Good.update({categoryId:req.params.id},{categoryId:null},{multi:true}, function(updateErr,affected) {
+       if (updateErr) {
+         res.status(500).send(updateErr)
+       }
+   
+        res.status(200).end();
+      }); 
+
     });
   });
 }

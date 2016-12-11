@@ -40,6 +40,30 @@ export function getGood(req, res) {
     res.json({ good });
   });
 }
+// Edit a good
+
+export function editGood(req, res) {
+ Good.findById(req.params.id, function(err, good){
+    if(err){
+      res.status(500).send(err);
+    } else {
+
+        good.categoryId = req.body.good.categoryId || good.categoryId;
+        good.name= req.body.good.name || good.name;
+        good.purchasingPrice = req.body.good.purchasingPrice || good.purchasingPrice;
+        good.retailPrice = req.body.good.retailPrice || good.retailPrice;
+
+ good.save((err, saved) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+    res.json({ good: saved });
+  });
+
+    }
+  });
+}
+
 
 // Delete a good
 
