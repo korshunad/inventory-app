@@ -1,12 +1,8 @@
 import Good from '../models/good';
 
 
-/**
- * Get all goods
- * @param req
- * @param res
- * @returns void
- */
+// Get all goods
+
 export function getGoods(req, res) {
   Good.find().exec((err, goods) => {
     if (err) {
@@ -16,12 +12,8 @@ export function getGoods(req, res) {
   });
 }
 
-/**
- * Save a good
- * @param req
- * @param res
- * @returns void
- */
+// Save a good
+
 export function addGood(req, res) {
   if (!req.body.good.name || !req.body.good.purchasingPrice || !req.body.good.retailPrice) {
     res.status(403).end();
@@ -38,14 +30,10 @@ export function addGood(req, res) {
   });
 }
 
-/**
- * Get a single good
- * @param req
- * @param res
- * @returns void
- */
+// Get a single good
+
 export function getGood(req, res) {
-  Good.findOne({ id: req.params.id }).exec((err, good) => {
+  Good.findOne({ _id: req.params.id }).exec((err, good) => {
     if (err) {
       res.status(500).send(err);
     }
@@ -53,14 +41,11 @@ export function getGood(req, res) {
   });
 }
 
-/**
- * Delete a good
- * @param req
- * @param res
- * @returns void
- */
+// Delete a good
+
 export function deleteGood(req, res) {
-  Good.findOne({ id: req.params.id }).exec((err, good) => {
+  Good.findOne({ _id: req.params.id }).exec((err, good) => {
+
     if (err) {
       res.status(500).send(err);
     }

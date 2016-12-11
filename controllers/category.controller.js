@@ -1,12 +1,8 @@
 import Category from '../models/category';
 
 
-/**
- * Get all categories
- * @param req
- * @param res
- * @returns void
- */
+// Get all categories
+
 export function getCategories(req, res) {
   Category.find().exec((err, categories) => {
     if (err) {
@@ -16,12 +12,8 @@ export function getCategories(req, res) {
   });
 }
 
-/**
- * Save a category
- * @param req
- * @param res
- * @returns void
- */
+// Save a category
+
 export function addCategory(req, res) {
   if (!req.body.category.name) {
     res.status(403).end();
@@ -38,14 +30,10 @@ export function addCategory(req, res) {
   });
 }
 
-/**
- * Get a single category
- * @param req
- * @param res
- * @returns void
- */
+// Get a single category
+
 export function getCategory(req, res) {
-  Category.findOne({ id: req.params.id }).exec((err, category) => {
+  Category.findOne({ _id: req.params.id }).exec((err, category) => {
     if (err) {
       res.status(500).send(err);
     }
@@ -53,14 +41,10 @@ export function getCategory(req, res) {
   });
 }
 
-/**
- * Delete a category
- * @param req
- * @param res
- * @returns void
- */
+// Delete a category
+
 export function deleteCategory(req, res) {
-  Category.findOne({ id: req.params.id }).exec((err, category) => {
+  Category.findOne({ _id: req.params.id }).exec((err, category) => {
     if (err) {
       res.status(500).send(err);
     }
