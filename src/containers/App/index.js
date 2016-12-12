@@ -1,7 +1,8 @@
 import React from 'react'
 import styles from './_App.css'
-import 'antd/dist/antd.css'; 
+import { Modal, Button, Form, Row, Col, Input, Icon } from 'antd';
 class App extends React.Component {
+
   constructor(props) {
     super(props);
     this.state={};
@@ -9,14 +10,16 @@ class App extends React.Component {
   render() {
     return (
         <div>
+          <ModalComp />
           <div className={styles.logo}>My-app</div>
+
           <div className={styles.addingButtons}>
-            <button className={styles.addGood}>Добавить товар</button>
-            <button className={styles.addCategory}>Добавить категорию</button>
+            <Button type="primary">Добавить товар</Button>
+            <Button type="primary">Добавить категорию</Button>
           </div>
           <div className={styles.categories}>
             <div className={styles.category}>Категория 1</div>
-            <button className={styles.deteteCategory}>X</button>
+            <Button className={styles.deteteCategory}> X </Button>
           </div>
           <div className={styles.goods}>
             <GoodTable goods={GOODS["goods"]} />
@@ -25,6 +28,47 @@ class App extends React.Component {
         )
   }
 }
+
+
+const ModalComp = React.createClass({
+  getInitialState() {
+    return { visible: false };
+  },
+  showModal() {
+    this.setState({
+      visible: true,
+    });
+  },
+  handleOk() {
+    console.log('Clicked OK');
+    this.setState({
+      visible: false,
+    });
+  },
+  handleCancel(e) {
+    console.log(e);
+    this.setState({
+      visible: false,
+    });
+  },
+  render() {
+    return (
+      <div>
+        <Button type="primary" onClick={this.showModal}>Open a modal dialog</Button>
+        <Modal title="Basic Modal" visible={this.state.visible}
+          onOk={this.handleOk} onCancel={this.handleCancel} okText="OK" cancelText="whatevr"
+        >
+<Input />
+<p>helloworlishee</p>
+          <p>some contents...</p>
+         <Button type="primary">hello</Button>
+        </Modal>
+      </div>
+    );
+  },
+});
+
+
 
 class GoodTable extends React.Component {
   render() {
@@ -36,8 +80,8 @@ class GoodTable extends React.Component {
         <td>{good.name}</td>
         <td>{good.purchasingPrice}</td>
         <td>{good.retailPrice}</td>
-        <button className={styles.deleteGood}>Удалить</button>
-        <button className={styles.updateGood}>Изменить</button>
+        <Button className={styles.deleteGood}>Удалить</Button>
+        <Button type="ghost" className={styles.updateGood}>Изменить</Button>
       </tr>
 )
       rows.push(row)
