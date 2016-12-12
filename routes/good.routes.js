@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import * as GoodController from '../controllers/good.controller';
+
 const router = new Router();
 
 // Get all goods

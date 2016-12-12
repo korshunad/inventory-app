@@ -1,6 +1,5 @@
 import Good from '../models/good';
 
-
 // Get all goods
 
 export function getGoods(req, res) {
@@ -20,7 +19,6 @@ export function addGood(req, res) {
   }
 
   const newGood = new Good(req.body.good);
-
 
   newGood.save((err, saved) => {
     if (err) {
@@ -43,7 +41,7 @@ export function getGood(req, res) {
 // Edit a good
 
 export function editGood(req, res) {
- Good.findById(req.params.id, function(err, good){
+ Good.findOne({_id:req.params.id}).exec((err, good) => {
     if(err){
       res.status(500).send(err);
     } else {
@@ -68,7 +66,7 @@ export function editGood(req, res) {
 // Delete a good
 
 export function deleteGood(req, res) {
-  Good.findOne({ _id: req.params.id }).exec((err, good) => {
+  Good.findOne({ cuid: req.params.cuid }).exec((err, good) => {
 
     if (err) {
       res.status(500).send(err);

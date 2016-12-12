@@ -21,7 +21,6 @@ export function addCategory(req, res) {
 
   const newCategory = new Category(req.body.category);
 
-
   newCategory.save((err, saved) => {
     if (err) {
       res.status(500).send(err);
