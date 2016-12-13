@@ -98217,6 +98217,26 @@ var App = function (_React$Component) {
   _createClass(App, [{
     key: 'render',
     value: function render() {
+      var categories = [];
+      CATEGORIES["categories"].forEach(function (cat) {
+        var category = _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            _antd.Button,
+            { className: _App2.default.deleteCategory },
+            'X'
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: _App2.default.category },
+            cat.name
+          )
+        );
+
+        categories.push(category);
+      });
+      console.log(categories);
       return _react2.default.createElement(
         'div',
         null,
@@ -98244,16 +98264,7 @@ var App = function (_React$Component) {
             _react2.default.createElement(
               'div',
               { className: _App2.default.categories },
-              _react2.default.createElement(
-                _antd.Button,
-                { className: _App2.default.deleteCategory },
-                'X'
-              ),
-              _react2.default.createElement(
-                'div',
-                { className: _App2.default.category },
-                '\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F 1'
-              )
+              categories
             ),
             _react2.default.createElement(
               'div',
@@ -98304,6 +98315,27 @@ var GOODS = {
     "__v": 0
   }]
 };
+
+var CATEGORIES = {
+  "categories": [{
+    "_id": "584eeea1a7c7d8268800771e",
+    "name": "Категория 1",
+    "__v": 0
+  }, {
+    "_id": "584eeea2a7c7d8268800771f",
+    "name": "Категория 2",
+    "__v": 0
+  }, {
+    "_id": "584eeea2a7c7d82688007720",
+    "name": "Категория 3",
+    "__v": 0
+  }, {
+    "_id": "584eeea1a7c7d8268800771e",
+    "name": "Категория 1",
+    "__v": 0
+  }]
+};
+
 exports.default = App;
 
 },{"./_App.css":818,"antd":54,"components/AddCategory":813,"components/AddGood":814,"components/GoodTable":817,"react":808}],820:[function(require,module,exports){

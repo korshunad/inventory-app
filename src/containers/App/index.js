@@ -5,6 +5,8 @@ import GoodTable from 'components/GoodTable'
 import styles from './_App.css'
 import {Button} from 'antd'
 
+
+
 class App extends React.Component {
 
   constructor(props) {
@@ -14,7 +16,18 @@ class App extends React.Component {
 
 
   render() {
-    return (
+    const categories = [];
+    CATEGORIES["categories"].forEach(function(cat) {
+      const category = (
+          <div>
+            <Button  className={styles.deleteCategory}>X</Button>
+            <div className={styles.category}>{cat.name}</div>
+          </div>)
+      
+      categories.push(category);
+    });
+console.log(categories);
+   return (
         <div>
         <div className={styles.whole}>
           <div className={styles.header}>
@@ -27,8 +40,7 @@ class App extends React.Component {
           </div>
           <div className={styles.data}>
           <div className={styles.categories}>
-            <Button  className={styles.deleteCategory}>X</Button>
-            <div className={styles.category}>Категория 1</div>
+            {categories}
           </div>
           <div className={styles.goods}>
             <GoodTable goods={GOODS["goods"]} />
@@ -80,4 +92,30 @@ const GOODS={
     }
   ]
 }
+
+const CATEGORIES={
+    "categories": [
+    {
+      "_id": "584eeea1a7c7d8268800771e",
+      "name": "Категория 1",
+      "__v": 0
+    },
+    {
+      "_id": "584eeea2a7c7d8268800771f",
+      "name": "Категория 2",
+      "__v": 0
+    },
+    {
+      "_id": "584eeea2a7c7d82688007720",
+      "name": "Категория 3",
+      "__v": 0
+    },
+    {
+      "_id": "584eeea1a7c7d8268800771e",
+      "name": "Категория 1",
+      "__v": 0
+    }
+  ]
+}
+
 export default App
