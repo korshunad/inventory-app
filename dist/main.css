@@ -1,1 +1,51 @@
-
+body {
+}
+._src_containers_App_App__whole {
+  display:inline-block;
+  height:200px;
+}
+._src_containers_App_App__header {
+  margin:10px;
+}
+._src_containers_App_App__data {
+  margin:10px;
+  height:200px;
+}
+._src_containers_App_App__logo, ._src_containers_App_App__addingButtons {
+  display:inline;
+  margin:10px;
+  width:auto;
+  position:relative;
+  font-size:20px;
+}
+._src_containers_App_App__category, ._src_containers_App_App__deleteCategory  {
+  display:inline;
+  position:relative;
+  margin:px;
+  width:auto;
+} 
+._src_containers_App_App__categories {
+  display: inline-block;
+  position:relative;
+  font-size:20px;
+  bottom:150px;
+  margin:10px;
+}
+._src_containers_App_App__goods {
+  display: inline-block;
+  position:relative;
+  font-size:20px;
+  margin:10px;
+}
+button {
+  font-size:20px;
+}
+._src_containers_App_App__addingButtons {
+    display:inline;
+}
+._src_containers_App_App__category {
+  margin:10px;
+}
+table {
+  display:inline-block;
+}

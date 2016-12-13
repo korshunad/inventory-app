@@ -97665,8 +97665,367 @@ module.exports = camel2hyphen;
 },{}],812:[function(require,module,exports){
 arguments[4][567][0].apply(exports,arguments)
 },{"_process":433,"dup":567}],813:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _antd = require('antd');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var AddCategory = _react2.default.createClass({
+  displayName: 'AddCategory',
+  getInitialState: function getInitialState() {
+    return {
+      visible: false
+    };
+  },
+  showModal: function showModal() {
+    this.setState({
+      visible: true
+    });
+  },
+  handleOk: function handleOk() {
+    var _this = this;
+
+    this.setState({
+      ModalText: 'The modal dialog will be closed after two seconds',
+      confirmLoading: true
+    });
+    setTimeout(function () {
+      _this.setState({
+        visible: false,
+        confirmLoading: false
+      });
+    }, 2000);
+  },
+  handleCancel: function handleCancel() {
+    console.log('Clicked cancel button');
+    this.setState({
+      visible: false
+    });
+  },
+  render: function render() {
+    return _react2.default.createElement(
+      'div',
+      { style: { width: 60, display: "inline", padding: 10 } },
+      _react2.default.createElement(
+        _antd.Button,
+        { type: 'primary', size: 'large', onClick: this.showModal },
+        '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044E'
+      ),
+      _react2.default.createElement(
+        _antd.Modal,
+        { title: '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044E',
+          visible: this.state.visible,
+          onOk: this.handleOk,
+          confirmLoading: this.state.confirmLoading,
+          onCancel: this.handleCancel,
+          okText: '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C',
+          cancelText: '\u041E\u0442\u043C\u0435\u043D\u0430',
+          width: '300'
+        },
+        _react2.default.createElement(
+          'label',
+          null,
+          '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435'
+        ),
+        ' ',
+        _react2.default.createElement(_antd.Input, { size: 'large' })
+      )
+    );
+  }
+});
+
+exports.default = AddCategory;
+
+},{"antd":54,"react":808}],814:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _antd = require('antd');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var menu = _react2.default.createElement(
+  _antd.Menu,
+  null,
+  _react2.default.createElement(
+    _antd.Menu.Item,
+    { key: '0' },
+    _react2.default.createElement(
+      'a',
+      { href: 'http://www.alipay.com/' },
+      '1st menu item'
+    )
+  ),
+  _react2.default.createElement(
+    _antd.Menu.Item,
+    { key: '1' },
+    _react2.default.createElement(
+      'a',
+      { href: 'http://www.taobao.com/' },
+      '2nd menu item'
+    )
+  ),
+  _react2.default.createElement(_antd.Menu.Divider, null),
+  _react2.default.createElement(
+    _antd.Menu.Item,
+    { key: '3' },
+    '3d menu item'
+  )
+);
+
+var AddGood = _react2.default.createClass({
+  displayName: 'AddGood',
+  getInitialState: function getInitialState() {
+    return {
+      ModalText: 'Content of the modal dialog',
+      visible: false
+    };
+  },
+  showModal: function showModal() {
+    this.setState({
+      visible: true
+    });
+  },
+  handleOk: function handleOk() {
+    var _this = this;
+
+    this.setState({
+      ModalText: 'The modal dialog will be closed after two seconds',
+      confirmLoading: true
+    });
+    setTimeout(function () {
+      _this.setState({
+        visible: false,
+        confirmLoading: false
+      });
+    }, 2000);
+  },
+  handleCancel: function handleCancel() {
+    console.log('Clicked cancel button');
+    this.setState({
+      visible: false
+    });
+  },
+  render: function render() {
+    return _react2.default.createElement(
+      'div',
+      { style: { width: 60, display: "inline", padding: 10 } },
+      _react2.default.createElement(
+        _antd.Button,
+        { type: 'primary', size: 'large', onClick: this.showModal },
+        '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440'
+      ),
+      _react2.default.createElement(
+        _antd.Modal,
+        { title: '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440',
+          visible: this.state.visible,
+          onOk: this.handleOk,
+          confirmLoading: this.state.confirmLoading,
+          onCancel: this.handleCancel,
+          okText: '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C',
+          cancelText: '\u041E\u0442\u043C\u0435\u043D\u0430',
+          width: '300'
+        },
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            _antd.Dropdown,
+            { overlay: menu, trigger: ['click'], type: 'ghost' },
+            _react2.default.createElement(
+              'a',
+              { className: 'ant-dropdown-link', href: '#' },
+              '\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F ',
+              _react2.default.createElement(_antd.Icon, { type: 'down' })
+            )
+          )
+        ),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+          'label',
+          null,
+          '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435'
+        ),
+        _react2.default.createElement(_antd.Input, { size: 'large' }),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+          'label',
+          null,
+          '\u0417\u0430\u043A\u0443\u043F\u043E\u0447\u043D\u0430\u044F \u0441\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C'
+        ),
+        _react2.default.createElement(_antd.Input, { size: 'large' }),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+          'label',
+          null,
+          '\u0420\u043E\u0437\u043D\u0438\u0447\u043D\u0430\u044F \u0446\u0435\u043D\u0430'
+        ),
+        _react2.default.createElement(_antd.Input, { size: 'large' })
+      )
+    );
+  }
+});
+
+exports.default = AddGood;
+
+},{"antd":54,"react":808}],815:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _antd = require('antd');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var menu = _react2.default.createElement(
+  _antd.Menu,
+  null,
+  _react2.default.createElement(
+    _antd.Menu.Item,
+    { key: '0' },
+    _react2.default.createElement(
+      'a',
+      { href: 'http://www.alipay.com/' },
+      '1st menu item'
+    )
+  ),
+  _react2.default.createElement(
+    _antd.Menu.Item,
+    { key: '1' },
+    _react2.default.createElement(
+      'a',
+      { href: 'http://www.taobao.com/' },
+      '2nd menu item'
+    )
+  ),
+  _react2.default.createElement(_antd.Menu.Divider, null),
+  _react2.default.createElement(
+    _antd.Menu.Item,
+    { key: '3' },
+    '3d menu item'
+  )
+);
+
+var ChangeGood = _react2.default.createClass({
+  displayName: 'ChangeGood',
+  getInitialState: function getInitialState() {
+    return {
+      ModalText: 'Content of the modal dialog',
+      visible: false
+    };
+  },
+  showModal: function showModal() {
+    this.setState({
+      visible: true
+    });
+  },
+  handleOk: function handleOk() {
+    var _this = this;
+
+    this.setState({
+      ModalText: 'The modal dialog will be closed after two seconds',
+      confirmLoading: true
+    });
+    setTimeout(function () {
+      _this.setState({
+        visible: false,
+        confirmLoading: false
+      });
+    }, 2000);
+  },
+  handleCancel: function handleCancel() {
+    console.log('Clicked cancel button');
+    this.setState({
+      visible: false
+    });
+  },
+  render: function render() {
+    return _react2.default.createElement(
+      'div',
+      { style: { width: 60, display: "inline", padding: 10 } },
+      _react2.default.createElement(
+        _antd.Button,
+        { type: 'primary', size: 'large', onClick: this.showModal },
+        '\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440'
+      ),
+      _react2.default.createElement(
+        _antd.Modal,
+        { title: '\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440',
+          visible: this.state.visible,
+          onOk: this.handleOk,
+          confirmLoading: this.state.confirmLoading,
+          onCancel: this.handleCancel,
+          okText: '\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C',
+          cancelText: '\u041E\u0442\u043C\u0435\u043D\u0430',
+          width: '300'
+        },
+        _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            _antd.Dropdown,
+            { overlay: menu, trigger: ['click'], type: 'ghost' },
+            _react2.default.createElement(
+              'a',
+              { className: 'ant-dropdown-link', href: '#' },
+              '\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F ',
+              _react2.default.createElement(_antd.Icon, { type: 'down' })
+            )
+          )
+        ),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+          'label',
+          null,
+          '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435'
+        ),
+        _react2.default.createElement(_antd.Input, { defaultValue: this.props.goodName, size: 'large' }),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+          'label',
+          null,
+          '\u0417\u0430\u043A\u0443\u043F\u043E\u0447\u043D\u0430\u044F \u0441\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C'
+        ),
+        _react2.default.createElement(_antd.Input, { defaultValue: this.props.goodPurchased, size: 'large' }),
+        _react2.default.createElement('br', null),
+        _react2.default.createElement(
+          'label',
+          null,
+          '\u0420\u043E\u0437\u043D\u0438\u0447\u043D\u0430\u044F \u0446\u0435\u043D\u0430'
+        ),
+        _react2.default.createElement(_antd.Input, { defaultValue: this.props.goodRetail, size: 'large' })
+      )
+    );
+  }
+});
+
+exports.default = ChangeGood;
+
+},{"antd":54,"react":808}],816:[function(require,module,exports){
 module.exports = {}
-},{}],814:[function(require,module,exports){
+},{}],817:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -97679,9 +98038,13 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _App = require('./_App.css');
+var _GoodTable = require('./_GoodTable.css');
 
-var _App2 = _interopRequireDefault(_App);
+var _GoodTable2 = _interopRequireDefault(_GoodTable);
+
+var _ChangeGood = require('components/ChangeGood');
+
+var _ChangeGood2 = _interopRequireDefault(_ChangeGood);
 
 var _antd = require('antd');
 
@@ -97693,129 +98056,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var App = function (_React$Component) {
-  _inherits(App, _React$Component);
-
-  function App(props) {
-    _classCallCheck(this, App);
-
-    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
-
-    _this.state = {};
-    return _this;
-  }
-
-  _createClass(App, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(ModalComp, null),
-        _react2.default.createElement(
-          'div',
-          { className: _App2.default.logo },
-          'My-app'
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: _App2.default.addingButtons },
-          _react2.default.createElement(
-            _antd.Button,
-            { type: 'primary' },
-            '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440'
-          ),
-          _react2.default.createElement(
-            _antd.Button,
-            { type: 'primary' },
-            '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044E'
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: _App2.default.categories },
-          _react2.default.createElement(
-            'div',
-            { className: _App2.default.category },
-            '\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F 1'
-          ),
-          _react2.default.createElement(
-            _antd.Button,
-            { className: _App2.default.deteteCategory },
-            ' X '
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: _App2.default.goods },
-          _react2.default.createElement(GoodTable, { goods: GOODS["goods"] })
-        )
-      );
-    }
-  }]);
-
-  return App;
-}(_react2.default.Component);
-
-var ModalComp = _react2.default.createClass({
-  displayName: 'ModalComp',
-  getInitialState: function getInitialState() {
-    return { visible: false };
-  },
-  showModal: function showModal() {
-    this.setState({
-      visible: true
-    });
-  },
-  handleOk: function handleOk() {
-    console.log('Clicked OK');
-    this.setState({
-      visible: false
-    });
-  },
-  handleCancel: function handleCancel(e) {
-    console.log(e);
-    this.setState({
-      visible: false
-    });
-  },
-  render: function render() {
-    return _react2.default.createElement(
-      'div',
-      null,
-      _react2.default.createElement(
-        _antd.Button,
-        { type: 'primary', onClick: this.showModal },
-        'Open a modal dialog'
-      ),
-      _react2.default.createElement(
-        _antd.Modal,
-        { title: 'Basic Modal', visible: this.state.visible,
-          onOk: this.handleOk, onCancel: this.handleCancel, okText: 'OK', cancelText: 'whatevr'
-        },
-        _react2.default.createElement(_antd.Input, null),
-        _react2.default.createElement(
-          'p',
-          null,
-          'helloworlishee'
-        ),
-        _react2.default.createElement(
-          'p',
-          null,
-          'some contents...'
-        ),
-        _react2.default.createElement(
-          _antd.Button,
-          { type: 'primary' },
-          'hello'
-        )
-      )
-    );
-  }
-});
-
-var GoodTable = function (_React$Component2) {
-  _inherits(GoodTable, _React$Component2);
+var GoodTable = function (_React$Component) {
+  _inherits(GoodTable, _React$Component);
 
   function GoodTable() {
     _classCallCheck(this, GoodTable);
@@ -97830,7 +98072,7 @@ var GoodTable = function (_React$Component2) {
       this.props.goods.forEach(function (good) {
         var row = _react2.default.createElement(
           'tr',
-          null,
+          { key: good._id },
           _react2.default.createElement(
             'td',
             null,
@@ -97852,14 +98094,23 @@ var GoodTable = function (_React$Component2) {
             good.retailPrice
           ),
           _react2.default.createElement(
-            _antd.Button,
-            { className: _App2.default.deleteGood },
-            '\u0423\u0434\u0430\u043B\u0438\u0442\u044C'
+            'td',
+            null,
+            _react2.default.createElement(
+              _antd.Button,
+              { size: 'large', className: _GoodTable2.default.deleteGood },
+              '\u0423\u0434\u0430\u043B\u0438\u0442\u044C'
+            )
           ),
           _react2.default.createElement(
-            _antd.Button,
-            { type: 'ghost', className: _App2.default.updateGood },
-            '\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C'
+            'td',
+            { key: "change " + good._id },
+            _react2.default.createElement(_ChangeGood2.default, {
+              goodName: good.name,
+              goodId: good._id,
+              goodPurchased: good.purchasingPrice,
+              goodRetail: good.retailPrice
+            })
           )
         );
         rows.push(row);
@@ -97908,6 +98159,116 @@ var GoodTable = function (_React$Component2) {
   return GoodTable;
 }(_react2.default.Component);
 
+exports.default = GoodTable;
+
+},{"./_GoodTable.css":816,"antd":54,"components/ChangeGood":815,"react":808}],818:[function(require,module,exports){
+module.exports = {"whole":"_src_containers_App_App__whole","header":"_src_containers_App_App__header","data":"_src_containers_App_App__data","logo":"_src_containers_App_App__logo","addingButtons":"_src_containers_App_App__addingButtons","category":"_src_containers_App_App__category","deleteCategory":"_src_containers_App_App__deleteCategory","categories":"_src_containers_App_App__categories","goods":"_src_containers_App_App__goods"}
+},{}],819:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _AddGood = require('components/AddGood');
+
+var _AddGood2 = _interopRequireDefault(_AddGood);
+
+var _AddCategory = require('components/AddCategory');
+
+var _AddCategory2 = _interopRequireDefault(_AddCategory);
+
+var _GoodTable = require('components/GoodTable');
+
+var _GoodTable2 = _interopRequireDefault(_GoodTable);
+
+var _App = require('./_App.css');
+
+var _App2 = _interopRequireDefault(_App);
+
+var _antd = require('antd');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var App = function (_React$Component) {
+  _inherits(App, _React$Component);
+
+  function App(props) {
+    _classCallCheck(this, App);
+
+    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+    _this.state = { isModalOpen: false };
+    return _this;
+  }
+
+  _createClass(App, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'div',
+          { className: _App2.default.whole },
+          _react2.default.createElement(
+            'div',
+            { className: _App2.default.header },
+            _react2.default.createElement(
+              'div',
+              { className: _App2.default.logo },
+              'My-app'
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: _App2.default.addingButtons },
+              _react2.default.createElement(_AddGood2.default, null),
+              _react2.default.createElement(_AddCategory2.default, null)
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: _App2.default.data },
+            _react2.default.createElement(
+              'div',
+              { className: _App2.default.categories },
+              _react2.default.createElement(
+                _antd.Button,
+                { className: _App2.default.deleteCategory },
+                'X'
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: _App2.default.category },
+                '\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F 1'
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: _App2.default.goods },
+              _react2.default.createElement(_GoodTable2.default, { goods: GOODS["goods"] })
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return App;
+}(_react2.default.Component);
+
 var GOODS = {
   "goods": [{
     "_id": "3",
@@ -97943,10 +98304,9 @@ var GOODS = {
     "__v": 0
   }]
 };
-
 exports.default = App;
 
-},{"./_App.css":813,"antd":54,"react":808}],815:[function(require,module,exports){
+},{"./_App.css":818,"antd":54,"components/AddCategory":813,"components/AddGood":814,"components/GoodTable":817,"react":808}],820:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -97963,4 +98323,4 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 (0, _reactDom.render)(_react2.default.createElement(_App2.default, null), document.getElementById('container'));
 
-},{"./containers/App":814,"react":808,"react-dom":642}]},{},[815]);
+},{"./containers/App":819,"react":808,"react-dom":642}]},{},[820]);

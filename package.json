@@ -28,14 +28,13 @@
     "babelify": "^7.3.0",
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
+    "boron": "^0.2.3",
     "browserify": "^13.1.0",
     "browserify-directory": "^1.0.2",
     "browserify-livereload": "^1.0.8",
     "css-modulesify": "^0.25.1",
     "cssify": "^1.0.3",
-    "elemental": "^0.6.1",
     "express": "^4.14.0",
-    "less": "^2.7.1",
     "mongoose": "^4.7.2",
     "mongoose-auto-increment": "^5.0.1",
     "nodemon": "^1.10.2",
@@ -43,6 +42,7 @@
     "react": "^15.4.1",
     "react-addons-css-transition-group": "^15.4.1",
     "react-dom": "^15.4.1",
+    "reactify": "^1.1.1",
     "redux": "^3.6.0",
     "watchify": "^3.7.0"
   }

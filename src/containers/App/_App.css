@@ -1,1 +1,48 @@
-
+body {
+}
+.whole {
+  display:inline-block;
+  height:200px;
+}
+.header {
+  margin:10px;
+}
+.data {
+  margin:10px;
+  height:200px;
+}
+.logo, .addingButtons {
+  display:inline;
+  margin:10px;
+  width:auto;
+  position:relative;
+  font-size:20px;
+}
+.category, .deleteCategory  {
+  display:inline;
+  position:relative;
+  margin:px;
+  width:auto;
+} 
+.categories {
+  display: inline-block;
+  position:relative;
+  font-size:20px;
+  bottom:150px;
+  margin:10px;
+}
+.goods {
+  display: inline-block;
+  position:relative;
+  font-size:20px;
+  margin:10px;
+}
+button {
+  font-size:20px;
+}
+.addingButtons {
+    display:inline;
+}
+.category {
+  margin:10px;
+}
