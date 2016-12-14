@@ -14,6 +14,7 @@ export function getGoods(req, res) {
 // Save a good
 
 export function addGood(req, res) {
+  console.log(req.body)
   if (!req.body.good.name || !req.body.good.purchasingPrice || !req.body.good.retailPrice) {
     res.status(403).end();
   }

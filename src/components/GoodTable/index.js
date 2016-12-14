@@ -6,8 +6,21 @@ import {Button} from 'antd'
 
 class GoodTable extends React.Component {
   render() {
+    self=this;
     const rows = [];
-    this.props.goods.forEach(function(good) {
+    this.props.goods.filter(function(el) {
+      if (self.props.currentCategoryId) {
+        if (self.props.currentCategoryId === el.categoryId) {
+          return true
+        } else if (self.props.currentCategoryId === "none" && el.categoryId === null) {
+          return true;
+        } else {
+          return false
+        }
+      } else { 
+        return true
+      }
+    }).forEach(function(good) {
       const row=(
       <tr key={good._id}>
         <td>{good._id}</td>
@@ -21,6 +34,8 @@ class GoodTable extends React.Component {
             goodId={good._id}
             goodPurchased={good.purchasingPrice}
             goodRetail={good.retailPrice}
+            cats={self.props.cats}
+            updGoodHandler={self.props.updGoodHandler}
           />
       </td>
       </tr>

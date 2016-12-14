@@ -1,25 +1,12 @@
 import React from 'react'
-import { Input, Modal, Button } from 'antd';
-import { Menu, Dropdown, Icon } from 'antd';
-
-const menu = (
-  <Menu>
-    <Menu.Item key="0">
-      <a href="http://www.alipay.com/">1st menu item</a>
-    </Menu.Item>
-    <Menu.Item key="1">
-      <a href="http://www.taobao.com/">2nd menu item</a>
-    </Menu.Item>
-    <Menu.Divider />
-    <Menu.Item key="3">3d menu item</Menu.Item>
-  </Menu>
-);
+import { Input, Modal, Button, Select } from 'antd';
+const Option = Select.Option;
 
 const AddGood = React.createClass({
   getInitialState() {
     return {
       ModalText: 'Content of the modal dialog',
-      visible: false,
+      visible: false
     };
   },
   showModal() {
@@ -28,6 +15,13 @@ const AddGood = React.createClass({
     });
   },
   handleOk() {
+    this.props.addGoodHandler({
+      newGoodName: this.state.newGoodName,
+      newPurchased: this.state.newPurchased,
+      newRetail: this.state.newRetail,
+      newCatId: this.state.newCatId
+    });
+    console.log('this is goodName '+JSON.stringify(this.state.newGoodName))
     this.setState({
       ModalText: 'The modal dialog will be closed after two seconds',
       confirmLoading: true,
@@ -45,7 +39,29 @@ const AddGood = React.createClass({
       visible: false,
     });
   },
+  handleNameChange(e) {
+    this.setState({newGoodName: e.target.value});
+  },
+  handlePurchaseChange(e) {
+    this.setState({newPurchased: e.target.value});
+  },
+  handleRetailChange(e) {
+    this.setState({newRetail: e.target.value});
+  },
+  handleCategoryChoice(value) {
+    this.setState({newCatId: value});
+    console.log(`selected ${value}`);
+  },
   render() {
+    console.log('cats'+JSON.stringify(this.props.cats))
+    const options = [];
+    this.props.cats.forEach(function(category) {
+      const option = (
+        <Option key={category._id}>
+          {category.name}
+        </Option>)
+    options.push(option);
+    });
     return (
       <div style={{width:60, display: "inline", padding: 10}}>
         <Button type="primary" size="large"onClick={this.showModal}>Добавить товар</Button>
@@ -59,18 +75,23 @@ const AddGood = React.createClass({
           width="300"
         >
         <div>
-          <Dropdown overlay={menu} trigger={['click']} type="ghost">
-            <a className="ant-dropdown-link" href="#">
-              Категория <Icon type="down" />
-            </a>
-          </Dropdown>
+           <Select defaultValue="Категория"  
+             style={{ width: 270 }}
+             size="large" 
+             onChange={this.handleCategoryChoice}
+           >
+              {options}
+           </Select>
         </div>
         <br />
-         <label>Название</label><Input size="large"/>
+         <label>Название</label>
+         <Input onChange={this.handleNameChange} size="large"/>
           <br />
-         <label>Закупочная стоимость</label><Input size="large" />
+         <label>Закупочная стоимость</label>
+         <Input onChange={this.handlePurchaseChange} size="large" />
           <br />
-         <label>Розничная цена</label><Input size="large"/>
+         <label>Розничная цена</label>
+         <Input onChange={this.handleRetailChange} size="large"/>
         </Modal>
       </div>
     );

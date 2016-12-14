@@ -1,19 +1,8 @@
 import React from 'react'
-import { Input, Modal, Button } from 'antd';
-import { Menu, Dropdown, Icon } from 'antd';
+import { Input, Modal, Button, Select } from 'antd';
 
-const menu = (
-  <Menu>
-    <Menu.Item key="0">
-      <a href="http://www.alipay.com/">1st menu item</a>
-    </Menu.Item>
-    <Menu.Item key="1">
-      <a href="http://www.taobao.com/">2nd menu item</a>
-    </Menu.Item>
-    <Menu.Divider />
-    <Menu.Item key="3">3d menu item</Menu.Item>
-  </Menu>
-);
+const Option = Select.Option;
+
 
 const ChangeGood = React.createClass({
   getInitialState() {
@@ -28,6 +17,14 @@ const ChangeGood = React.createClass({
     });
   },
   handleOk() {
+    console.log("watching upd and handle ok"+JSON.stringify(this.props))
+    this.props.updGoodHandler({
+      updGoodName: this.state.updGoodName, 
+      updPurchasingPrice: this.state.updPurchasingPrice, 
+      updRetailPrice: this.state.updRetailPrice,  
+      updCatId: this.state.updCatId,
+      updGoodId: this.props.goodId
+    })
     this.setState({
       ModalText: 'The modal dialog will be closed after two seconds',
       confirmLoading: true,
@@ -45,7 +42,28 @@ const ChangeGood = React.createClass({
       visible: false,
     });
   },
+  handleNameChange(e) {
+    this.setState({updGoodName: e.target.value});
+  },
+  handlePurchaseChange(e) {
+    this.setState({updPurchasingPrice: e.target.value});
+  },
+  handleRetailChange(e) {
+    this.setState({updRetailPrice: e.target.value});
+  },
+  handleCategoryChoice(value) {
+    this.setState({updCatId: value});
+    console.log(`selected ${value}`);
+  },
   render() {
+    const options = [];
+    this.props.cats.forEach(function(category) {
+      const option = (
+        <Option key={category._id}>
+          {category.name}
+        </Option>)
+    options.push(option);
+    });
     return (
       <div style={{width:60, display: "inline", padding: 10}}>
         <Button type="primary" size="large"onClick={this.showModal}>Изменить товар</Button>
@@ -59,18 +77,32 @@ const ChangeGood = React.createClass({
           width="300"
         >
         <div>
-          <Dropdown overlay={menu} trigger={['click']} type="ghost">
-            <a className="ant-dropdown-link" href="#">
-              Категория <Icon type="down" />
-            </a>
-          </Dropdown>
+           <Select defaultValue="Категория"  
+             style={{ width: 270 }}
+             size="large" 
+             onChange={this.handleCategoryChoice}
+           >
+              {options}
+           </Select>
         </div>
         <br />
-         <label>Название</label><Input defaultValue={this.props.goodName} size="large"/>
+         <label>Название</label>
+         <Input 
+            defaultValue={this.props.goodName} 
+            onChange={this.handleNameChange}
+            size="large"/>
           <br />
-         <label>Закупочная стоимость</label><Input defaultValue={this.props.goodPurchased} size="large" />
+         <label>Закупочная стоимость</label>
+         <Input 
+            defaultValue={this.props.goodPurchased} 
+            onChange={this.handlePurchaseChange}
+            size="large" />
           <br />
-         <label>Розничная цена</label><Input defaultValue={this.props.goodRetail} size="large"/>
+         <label>Розничная цена</label>
+         <Input 
+            defaultValue={this.props.goodRetail} 
+            onChange={this.handleRetailChange}
+            size="large"/>
         </Modal>
       </div>
     );
