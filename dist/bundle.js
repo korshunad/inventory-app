@@ -106525,7 +106525,7 @@ var GoodTable = function (_React$Component) {
         if (self.props.currentCategoryId) {
           if (self.props.currentCategoryId === el.categoryId) {
             return true;
-          } else if (self.props.currentCategoryId === "none" && el.categoryId === null) {
+          } else if (!el.hasOwnProperty('categoryId') || el.categoryId === null) {
             return true;
           } else {
             return false;
