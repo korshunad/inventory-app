@@ -107198,3 +107198,23 @@ function deleteCategory(params) {
 }
 
 },{"isomorphic-fetch":717}]},{},[1157]);
+};
+}
+
+function deleteCategory(params) {
+  return function (dispatch, getState) {
+    dispatch({ type: DELETE_CATEGORY });
+    (0, _isomorphicFetch2.default)('/api/categories/' + params.delCatId, {
+      method: 'delete'
+    }).then(function (response) {
+      if (response.status >= 400) {
+        throw new Error('Bad response from server');
+      };
+      return true;
+    }).then(function () {
+      dispatch({ type: DELETE_CATEGORY_SUCCESS, catId: params.delCatId });
+    });
+  };
+}
+
+},{"isomorphic-fetch":717}]},{},[1157]);
