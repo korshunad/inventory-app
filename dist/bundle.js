@@ -106801,7 +106801,7 @@ var App = function (_React$Component) {
             { type: 'flex', justify: 'right', align: 'top' },
             _react2.default.createElement(
               _antd.Col,
-              { span: 4 },
+              { span: 5 },
               _react2.default.createElement(
                 'div',
                 { className: _App2.default.logo },
@@ -106825,7 +106825,7 @@ var App = function (_React$Component) {
               { type: 'flex', justify: 'right', align: 'top' },
               _react2.default.createElement(
                 _antd.Col,
-                { span: 4 },
+                { span: 5 },
                 _react2.default.createElement(
                   'div',
                   { className: _App2.default.categories },

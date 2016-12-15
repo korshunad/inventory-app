@@ -111,7 +111,7 @@ class App extends React.Component {
         <div>
          <div className={styles.app}>
           <Row type="flex" justify="right" align="top" >
-            <Col span={4}>
+            <Col span={5}>
               <div className={styles.logo}>My-app</div>
             </Col>
             <Col span={8}>
@@ -123,7 +123,7 @@ class App extends React.Component {
           </Row>
           <div className={styles.data}> 
             <Row type="flex" justify="right" align="top"> 
-              <Col span={4}>
+              <Col span={5}>
                 <div className={styles.categories}>
                   {categories}
                 </div>
