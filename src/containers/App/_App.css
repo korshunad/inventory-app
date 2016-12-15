@@ -36,8 +36,10 @@ body {
 
 .app {
   height:auto;
-  width:auto;
-  margin:30px;
+  width: 1300px !important;
+  margin: 30px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .data {
   margin-top:30px;
