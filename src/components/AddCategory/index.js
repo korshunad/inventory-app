@@ -1,7 +1,11 @@
 import React from 'react'
 import { Modal, Button, Input } from 'antd';
 
-const AddCategory = React.createClass({
+class AddCategory extends React.Component{
+  constructor(props) {
+    super(props);
+    
+  }
   getInitialState() {
     return {
       visible: false,
@@ -53,6 +57,6 @@ const AddCategory = React.createClass({
       </div>
     );
   },
-});
+};
 
 export default AddCategory
