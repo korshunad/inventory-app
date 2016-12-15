@@ -59,7 +59,7 @@ export default function api (state = initialState, action = {}) {
 
     case CHANGE_GOOD_SUCCESS:
       let changedGoods = state.goods.slice(0)
-      let updGoods = changedGoods.filter(function(good) {
+      let updGoods = changedGoods.filter((good) => {
         if (good._id === action.good._id) {
           return false
         } else { return true }
@@ -72,7 +72,7 @@ export default function api (state = initialState, action = {}) {
 
     case DELETE_GOOD_SUCCESS:
       let leftGoods = state.goods.slice(0)
-      let left = leftGoods.filter(function(good) {
+      let left = leftGoods.filter((good) => {
         if (good._id === action.goodId) {
           return false
         } else { return true }
@@ -84,13 +84,13 @@ export default function api (state = initialState, action = {}) {
 
     case DELETE_CATEGORY_SUCCESS:
       let renewedGoods = state.categories.slice(0)
-      let renewed = renewedGoods.forEach(function(good) {
+      let renewed = renewedGoods.forEach((good) => {
         if (good.categoryId === action.catId) {
           good.categoryId = null
         } 
       })
       let leftCats = state.categories.slice(0)
-      let leftCategories = leftCats.filter(function(cat) {
+      let leftCategories = leftCats.filter((cat) => {
         if (cat._id === action.catId) {
           return false
         } else {return true}
@@ -129,39 +129,39 @@ export default function api (state = initialState, action = {}) {
 }
 
 export function getGoods() {
-  return function (dispatch, getState) {
+  return (dispatch, getState) => {
     dispatch({type: GET_GOODS, foo: "yo"});
     fetch('/api/goods', {method: 'get' })
-      .then(function(response) {
+      .then((response) =>  {
         if (response.status >= 400) {
           throw new Error("Bad response from server");
         };
         return response.json();
       })
-      .then(function(goodsResponse) {
+      .then((goodsResponse) => {
         dispatch({type: GET_GOODS_SUCCESS, goods: goodsResponse.goods })
       });
   }
 }
 
 export function getCategories() {
-  return function (dispatch, getState) {
+  return (dispatch, getState) => {
     dispatch({type: GET_CATEGORIES});
     fetch('/api/categories', {method: 'get'})
-      .then(function(response) {
+      .then((response) => {
         if (response.status >= 400) {
           throw new Error("Bad response from server");
         };
         return response.json();
       })
-      .then(function(categoriesResponse) {
+      .then((categoriesResponse) => {
         dispatch({type: GET_CATEGORIES_SUCCESS, categories: categoriesResponse.categories })
       });
   }
 }
 
 export function addGood(params) {
-  return function (dispatch, getState) {
+  return (dispatch, getState) => {
     dispatch({type:ADD_GOOD});
     let myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
@@ -174,13 +174,13 @@ export function addGood(params) {
         good: {name: params.newGoodName, purchasingPrice: params.newPurchased, retailPrice: params.newRetail, categoryId: params.newCatId}
       })
     })
-    .then(function(response) {
+    .then((response) => {
       if (response.status >=400) {
         throw new Error("Bad Response from server");
       };
       return response.json();
     })
-    .then(function(goodResponse) {
+    .then((goodResponse) => {
       dispatch({type: ADD_GOOD_SUCCESS, good: goodResponse.good}) 
     });
     
@@ -188,7 +188,7 @@ export function addGood(params) {
 }
 
 export function addCategory(params) {
-  return function (dispatch, getState) {
+  return (dispatch, getState) => {
     dispatch({type:ADD_CATEGORY});
     let myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
@@ -201,26 +201,26 @@ export function addCategory(params) {
         category: {name: params.newCatName}
       })
     })
-    .then(function(response) {
+    .then((response) => {
       if (response.status >=400) {
         throw new Error("Bad response from server");
       };
       return response.json();
     })
-    .then(function(catResponse) {
+    .then((catResponse) => {
       dispatch({type: ADD_CATEGORY_SUCCESS, category: catResponse.category})
     });
   } 
 }
 
 export function setCategory(params) {
-  return function (dispatch, getState) {
+  return (dispatch, getState) => {
     dispatch({type:SET_CATEGORY_SUCCESS, currentCategoryId: params.categoryId})     
   }
 }
 
 export function changeGood(params) {
-  return function (dispatch, getState) {
+  return (dispatch, getState) => {
     dispatch({type:CHANGE_GOOD});
     let myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
@@ -237,47 +237,47 @@ export function changeGood(params) {
           categoryId: params.updCatId}
       })
     })
-    .then(function(response) {
+    .then((response) => {
       if (response.status >=400) {
         throw new Error("Bad response from server");
       };
       return response.json();
     })
-    .then(function(updatedGoodResponse) {
+    .then((updatedGoodResponse) => {
       dispatch({type:CHANGE_GOOD_SUCCESS, good: updatedGoodResponse.good})
     });
   }
 }
 
 export function deleteGood(params) {
-  return function (dispatch, getState) {
+  return (dispatch, getState) => {
     dispatch({type:DELETE_GOOD});
     fetch('/api/goods/'+params.delGoodId, {
       method: 'delete'
-    }).then(function(response) {
+    }).then((response) => {
       if (response.status >=400) {
         throw new Error('Bad response from server');
       };
       return true;
     })
-    .then(function() {
+    .then(() => {
       dispatch({type:DELETE_GOOD_SUCCESS, goodId: params.delGoodId})
     });
   }
 }
 
 export function deleteCategory(params) {
-  return function (dispatch, getState) {
+  return (dispatch, getState) => {
     dispatch({type:DELETE_CATEGORY});
     fetch('/api/categories/'+params.delCatId, {
       method: 'delete'
-    }).then(function(response) {
+    }).then((response) => {
         if (response.status >=400) {
           throw new Error('Bad response from server');
         };
         return true;
     })
-    .then(function() {
+    .then(() => {
       dispatch({type:DELETE_CATEGORY_SUCCESS, catId: params.delCatId})
     })
   }
