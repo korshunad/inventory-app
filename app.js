@@ -8,7 +8,7 @@ import goods from './routes/good.routes';
 import categories from './routes/category.routes';
 
 
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/test');
 
 app.set('view engine', 'pug');
 app.use(bodyParser.json());
