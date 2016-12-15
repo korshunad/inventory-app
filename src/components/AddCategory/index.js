@@ -13,8 +13,10 @@ const AddCategory = React.createClass({
     });
   },
   handleOk() {
+    this.props.addCatHandler({
+      newCatName: this.state.newCatName
+    })
     this.setState({
-      ModalText: 'The modal dialog will be closed after two seconds',
       confirmLoading: true,
     });
     setTimeout(() => {
@@ -22,13 +24,15 @@ const AddCategory = React.createClass({
         visible: false,
         confirmLoading: false,
       });
-    }, 2000);
+    }, 500);
   },
   handleCancel() {
-    console.log('Clicked cancel button');
     this.setState({
       visible: false,
     });
+  },
+  handleCatNameChange(e) {
+    this.setState({newCatName: e.target.value})
   },
   render() {
     return (
@@ -43,7 +47,8 @@ const AddCategory = React.createClass({
           cancelText="Отмена"
           width="300"
         >
-        <label>Название</label> <Input size="large"/>
+        <label>Название</label> 
+        <Input onChange={this.handleCatNameChange} size="large"/>
         </Modal>
       </div>
     );

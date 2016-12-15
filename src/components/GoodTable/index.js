@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './_GoodTable.css'
 import ChangeGood from 'components/ChangeGood'
-
+import DeleteGood from 'components/DeleteGood'
 import {Button} from 'antd'
 
 class GoodTable extends React.Component {
@@ -27,11 +27,15 @@ class GoodTable extends React.Component {
         <td>{good.name}</td>
         <td>{good.purchasingPrice}</td>
         <td>{good.retailPrice}</td>
-        <td><Button  size="large" className={styles.deleteGood}>Удалить</Button></td>
-       <td key={"change "+good._id}>
+       <td><DeleteGood 
+              goodId={good._id}
+              deleteGoodHandler={self.props.deleteGoodHandler}
+            /></td>
+        <td key={"change "+good._id}>
           <ChangeGood 
             goodName={good.name}
             goodId={good._id}
+            goodCatId={good.categoryId}
             goodPurchased={good.purchasingPrice}
             goodRetail={good.retailPrice}
             cats={self.props.cats}
@@ -39,7 +43,7 @@ class GoodTable extends React.Component {
           />
       </td>
       </tr>
-)
+      )
       rows.push(row)
     });
     return (

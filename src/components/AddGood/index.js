@@ -5,7 +5,6 @@ const Option = Select.Option;
 const AddGood = React.createClass({
   getInitialState() {
     return {
-      ModalText: 'Content of the modal dialog',
       visible: false
     };
   },
@@ -21,9 +20,7 @@ const AddGood = React.createClass({
       newRetail: this.state.newRetail,
       newCatId: this.state.newCatId
     });
-    console.log('this is goodName '+JSON.stringify(this.state.newGoodName))
     this.setState({
-      ModalText: 'The modal dialog will be closed after two seconds',
       confirmLoading: true,
     });
     setTimeout(() => {
@@ -31,10 +28,9 @@ const AddGood = React.createClass({
         visible: false,
         confirmLoading: false,
       });
-    }, 2000);
+    }, 500);
   },
   handleCancel() {
-    console.log('Clicked cancel button');
     this.setState({
       visible: false,
     });
@@ -50,10 +46,8 @@ const AddGood = React.createClass({
   },
   handleCategoryChoice(value) {
     this.setState({newCatId: value});
-    console.log(`selected ${value}`);
   },
   render() {
-    console.log('cats'+JSON.stringify(this.props.cats))
     const options = [];
     this.props.cats.forEach(function(category) {
       const option = (

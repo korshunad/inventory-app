@@ -3,11 +3,9 @@ import { Input, Modal, Button, Select } from 'antd';
 
 const Option = Select.Option;
 
-
 const ChangeGood = React.createClass({
   getInitialState() {
     return {
-      ModalText: 'Content of the modal dialog',
       visible: false,
     };
   },
@@ -17,7 +15,6 @@ const ChangeGood = React.createClass({
     });
   },
   handleOk() {
-    console.log("watching upd and handle ok"+JSON.stringify(this.props))
     this.props.updGoodHandler({
       updGoodName: this.state.updGoodName, 
       updPurchasingPrice: this.state.updPurchasingPrice, 
@@ -26,7 +23,6 @@ const ChangeGood = React.createClass({
       updGoodId: this.props.goodId
     })
     this.setState({
-      ModalText: 'The modal dialog will be closed after two seconds',
       confirmLoading: true,
     });
     setTimeout(() => {
@@ -34,10 +30,9 @@ const ChangeGood = React.createClass({
         visible: false,
         confirmLoading: false,
       });
-    }, 2000);
+    }, 500);
   },
   handleCancel() {
-    console.log('Clicked cancel button');
     this.setState({
       visible: false,
     });
@@ -53,7 +48,6 @@ const ChangeGood = React.createClass({
   },
   handleCategoryChoice(value) {
     this.setState({updCatId: value});
-    console.log(`selected ${value}`);
   },
   render() {
     const options = [];
@@ -77,8 +71,10 @@ const ChangeGood = React.createClass({
           width="300"
         >
         <div>
-           <Select defaultValue="Категория"  
+           <Select 
+              defaultValue={this.props.categoryId}
              style={{ width: 270 }}
+             
              size="large" 
              onChange={this.handleCategoryChoice}
            >

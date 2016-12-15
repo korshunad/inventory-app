@@ -106020,8 +106020,10 @@ var AddCategory = _react2.default.createClass({
   handleOk: function handleOk() {
     var _this = this;
 
+    this.props.addCatHandler({
+      newCatName: this.state.newCatName
+    });
     this.setState({
-      ModalText: 'The modal dialog will be closed after two seconds',
       confirmLoading: true
     });
     setTimeout(function () {
@@ -106029,13 +106031,15 @@ var AddCategory = _react2.default.createClass({
         visible: false,
         confirmLoading: false
       });
-    }, 2000);
+    }, 500);
   },
   handleCancel: function handleCancel() {
-    console.log('Clicked cancel button');
     this.setState({
       visible: false
     });
+  },
+  handleCatNameChange: function handleCatNameChange(e) {
+    this.setState({ newCatName: e.target.value });
   },
   render: function render() {
     return _react2.default.createElement(
@@ -106062,8 +106066,7 @@ var AddCategory = _react2.default.createClass({
           null,
           '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435'
         ),
-        ' ',
-        _react2.default.createElement(_antd.Input, { size: 'large' })
+        _react2.default.createElement(_antd.Input, { onChange: this.handleCatNameChange, size: 'large' })
       )
     );
   }
@@ -106092,7 +106095,6 @@ var AddGood = _react2.default.createClass({
   displayName: 'AddGood',
   getInitialState: function getInitialState() {
     return {
-      ModalText: 'Content of the modal dialog',
       visible: false
     };
   },
@@ -106110,9 +106112,7 @@ var AddGood = _react2.default.createClass({
       newRetail: this.state.newRetail,
       newCatId: this.state.newCatId
     });
-    console.log('this is goodName ' + JSON.stringify(this.state.newGoodName));
     this.setState({
-      ModalText: 'The modal dialog will be closed after two seconds',
       confirmLoading: true
     });
     setTimeout(function () {
@@ -106120,10 +106120,9 @@ var AddGood = _react2.default.createClass({
         visible: false,
         confirmLoading: false
       });
-    }, 2000);
+    }, 500);
   },
   handleCancel: function handleCancel() {
-    console.log('Clicked cancel button');
     this.setState({
       visible: false
     });
@@ -106139,10 +106138,8 @@ var AddGood = _react2.default.createClass({
   },
   handleCategoryChoice: function handleCategoryChoice(value) {
     this.setState({ newCatId: value });
-    console.log('selected ' + value);
   },
   render: function render() {
-    console.log('cats' + JSON.stringify(this.props.cats));
     var options = [];
     this.props.cats.forEach(function (category) {
       var option = _react2.default.createElement(
@@ -106233,7 +106230,6 @@ var ChangeGood = _react2.default.createClass({
   displayName: 'ChangeGood',
   getInitialState: function getInitialState() {
     return {
-      ModalText: 'Content of the modal dialog',
       visible: false
     };
   },
@@ -106245,7 +106241,6 @@ var ChangeGood = _react2.default.createClass({
   handleOk: function handleOk() {
     var _this = this;
 
-    console.log("watching upd and handle ok" + JSON.stringify(this.props));
     this.props.updGoodHandler({
       updGoodName: this.state.updGoodName,
       updPurchasingPrice: this.state.updPurchasingPrice,
@@ -106254,7 +106249,6 @@ var ChangeGood = _react2.default.createClass({
       updGoodId: this.props.goodId
     });
     this.setState({
-      ModalText: 'The modal dialog will be closed after two seconds',
       confirmLoading: true
     });
     setTimeout(function () {
@@ -106262,10 +106256,9 @@ var ChangeGood = _react2.default.createClass({
         visible: false,
         confirmLoading: false
       });
-    }, 2000);
+    }, 500);
   },
   handleCancel: function handleCancel() {
-    console.log('Clicked cancel button');
     this.setState({
       visible: false
     });
@@ -106281,7 +106274,6 @@ var ChangeGood = _react2.default.createClass({
   },
   handleCategoryChoice: function handleCategoryChoice(value) {
     this.setState({ updCatId: value });
-    console.log('selected ' + value);
   },
   render: function render() {
     var options = [];
@@ -106317,8 +106309,10 @@ var ChangeGood = _react2.default.createClass({
           null,
           _react2.default.createElement(
             _antd.Select,
-            { defaultValue: '\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F',
+            {
+              defaultValue: this.props.categoryId,
               style: { width: 270 },
+
               size: 'large',
               onChange: this.handleCategoryChoice
             },
@@ -106363,8 +106357,122 @@ var ChangeGood = _react2.default.createClass({
 exports.default = ChangeGood;
 
 },{"antd":54,"react":1130}],1151:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _antd = require('antd');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var DeleteCategory = _react2.default.createClass({
+  displayName: 'DeleteCategory',
+  getInitialState: function getInitialState() {
+    return { visible: false };
+  },
+  showModal: function showModal() {
+    this.setState({
+      visible: true
+    });
+  },
+  handleOk: function handleOk() {
+    this.props.deleteCatHandler();
+    this.setState({
+      visible: false
+    });
+  },
+  handleCancel: function handleCancel(e) {
+    this.setState({
+      visible: false
+    });
+  },
+  render: function render() {
+    return _react2.default.createElement(
+      'div',
+      { style: { width: 100, display: "inline" } },
+      _react2.default.createElement(
+        _antd.Button,
+        { type: 'ghost',
+          style: { margin: 5 },
+          onClick: this.showModal },
+        'X'
+      ),
+      _react2.default.createElement(
+        _antd.Modal,
+        { title: '\u0425\u043E\u0442\u0438\u0442\u0435 \u0443\u0434\u0430\u043B\u0438\u0442\u044C \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044E?',
+          visible: this.state.visible,
+          onOk: this.handleOk,
+          onCancel: this.handleCancel,
+          okText: '\u0414\u0430', cancelText: '\u041D\u0435\u0442'
+        },
+        _react2.default.createElement(
+          'p',
+          null,
+          '\u0412\u0441\u0435 \u0442\u043E\u0432\u0430\u0440\u044B \u0432 \u044D\u0442\u043E\u0439 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438 \u0431\u0443\u0434\u0443\u0442 \u043F\u043E\u043C\u0435\u0447\u0435\u043D\u044B "\u0411\u0435\u0437 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438"'
+        )
+      )
+    );
+  }
+});
+
+exports.default = DeleteCategory;
+
+},{"antd":54,"react":1130}],1152:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _antd = require('antd');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var DeleteGood = _react2.default.createClass({
+  displayName: 'DeleteGood',
+  agree: function agree() {
+    this.props.deleteGoodHandler({
+      delGoodId: this.props.goodId });
+    _antd.message.success('Товар удален');
+  },
+  cancel: function cancel() {
+    _antd.message.error('Товар остался в базе');
+  },
+  render: function render() {
+    return _react2.default.createElement(
+      _antd.Popconfirm,
+      { title: "Точно удалить товар id" + this.props.goodId + "?",
+        onConfirm: this.agree,
+        onCancel: this.cancel,
+        okText: '\u0414\u0430', cancelText: '\u041D\u0435\u0442' },
+      _react2.default.createElement(
+        _antd.Button,
+        { size: 'large' },
+        _react2.default.createElement(
+          'a',
+          { href: '#' },
+          '\u0423\u0434\u0430\u043B\u0438\u0442\u044C'
+        )
+      )
+    );
+  }
+});
+
+exports.default = DeleteGood;
+
+},{"antd":54,"react":1130}],1153:[function(require,module,exports){
 module.exports = {}
-},{}],1152:[function(require,module,exports){
+},{}],1154:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -106384,6 +106492,10 @@ var _GoodTable2 = _interopRequireDefault(_GoodTable);
 var _ChangeGood = require('components/ChangeGood');
 
 var _ChangeGood2 = _interopRequireDefault(_ChangeGood);
+
+var _DeleteGood = require('components/DeleteGood');
+
+var _DeleteGood2 = _interopRequireDefault(_DeleteGood);
 
 var _antd = require('antd');
 
@@ -106448,11 +106560,10 @@ var GoodTable = function (_React$Component) {
           _react2.default.createElement(
             'td',
             null,
-            _react2.default.createElement(
-              _antd.Button,
-              { size: 'large', className: _GoodTable2.default.deleteGood },
-              '\u0423\u0434\u0430\u043B\u0438\u0442\u044C'
-            )
+            _react2.default.createElement(_DeleteGood2.default, {
+              goodId: good._id,
+              deleteGoodHandler: self.props.deleteGoodHandler
+            })
           ),
           _react2.default.createElement(
             'td',
@@ -106460,6 +106571,7 @@ var GoodTable = function (_React$Component) {
             _react2.default.createElement(_ChangeGood2.default, {
               goodName: good.name,
               goodId: good._id,
+              goodCatId: good.categoryId,
               goodPurchased: good.purchasingPrice,
               goodRetail: good.retailPrice,
               cats: self.props.cats,
@@ -106515,9 +106627,9 @@ var GoodTable = function (_React$Component) {
 
 exports.default = GoodTable;
 
-},{"./_GoodTable.css":1151,"antd":54,"components/ChangeGood":1150,"react":1130}],1153:[function(require,module,exports){
-module.exports = {"whole":"_src_containers_App_App__whole","header":"_src_containers_App_App__header","data":"_src_containers_App_App__data","logo":"_src_containers_App_App__logo","addingButtons":"_src_containers_App_App__addingButtons","category":"_src_containers_App_App__category","deleteCategory":"_src_containers_App_App__deleteCategory","categories":"_src_containers_App_App__categories","goods":"_src_containers_App_App__goods"}
-},{}],1154:[function(require,module,exports){
+},{"./_GoodTable.css":1153,"antd":54,"components/ChangeGood":1150,"components/DeleteGood":1152,"react":1130}],1155:[function(require,module,exports){
+module.exports = {"deleteCategory":"_src_containers_App_App__deleteCategory","category":"_src_containers_App_App__category","categories":"_src_containers_App_App__categories","logo":"_src_containers_App_App__logo","app":"_src_containers_App_App__app","data":"_src_containers_App_App__data","separatCat":"_src_containers_App_App__separatCat"}
+},{}],1156:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -106541,6 +106653,10 @@ var _AddCategory2 = _interopRequireDefault(_AddCategory);
 var _GoodTable = require('components/GoodTable');
 
 var _GoodTable2 = _interopRequireDefault(_GoodTable);
+
+var _DeleteCategory = require('components/DeleteCategory');
+
+var _DeleteCategory2 = _interopRequireDefault(_DeleteCategory);
 
 var _App = require('./_App.css');
 
@@ -106577,7 +106693,6 @@ var App = function (_React$Component) {
     value: function componentDidMount() {
       this.props.dispatch((0, _api.getGoods)());
       this.props.dispatch((0, _api.getCategories)());
-      console.log(this.props.categories);
     }
   }, {
     key: 'componentWillReceiveProps',
@@ -106593,7 +106708,13 @@ var App = function (_React$Component) {
         newRetail: params.newRetail,
         newCatId: params.newCatId
       }));
-      console.log("hello from add good");
+    }
+  }, {
+    key: 'addCatHandler',
+    value: function addCatHandler(params) {
+      this.props.dispatch((0, _api.addCategory)({
+        newCatName: params.newCatName
+      }));
     }
   }, {
     key: 'updGoodHandler',
@@ -106607,9 +106728,26 @@ var App = function (_React$Component) {
       }));
     }
   }, {
+    key: 'deleteGoodHandler',
+    value: function deleteGoodHandler(params) {
+      this.props.dispatch((0, _api.deleteGood)({
+        delGoodId: params.delGoodId
+      }));
+    }
+  }, {
+    key: 'deleteCatHandler',
+    value: function deleteCatHandler(params) {
+      var self = this;
+      this.props.dispatch((0, _api.deleteCategory)({
+        delCatId: params
+      }));
+      setTimeout(function () {
+        self.props.dispatch((0, _api.getGoods)());
+      }, 1000);
+    }
+  }, {
     key: 'handleCategoryClick',
     value: function handleCategoryClick(id) {
-      console.log("clecked category id is " + id);
       if (id === this.props.currentCategoryId) {
         this.props.dispatch((0, _api.setCategory)({
           categoryId: null
@@ -106624,70 +106762,85 @@ var App = function (_React$Component) {
     key: 'render',
     value: function render() {
       var self = this;
+      var truncate = function truncate(string) {
+        if (string.length > 15) return string.substring(0, 15) + '...';else return string;
+      };
       var categories = [];
       this.props.categories.forEach(function (cat) {
         var category = _react2.default.createElement(
           'div',
-          { key: cat._id },
-          _react2.default.createElement(
-            _antd.Button,
-            { className: _App2.default.deleteCategory },
-            'X'
-          ),
+          { styles: { margin: 60 }, key: cat._id },
+          _react2.default.createElement(_DeleteCategory2.default, { className: _App2.default.deleteCategory,
+            cats: self.props.categories,
+            deleteCatHandler: self.deleteCatHandler.bind(self, cat._id) }),
           _react2.default.createElement(
             'div',
             { className: _App2.default.category,
               onClick: self.handleCategoryClick.bind(self, cat._id) },
-            cat.name
+            truncate(cat.name)
           )
         );
 
         categories.push(category);
       });
+
       categories.push(_react2.default.createElement(
         'div',
         { className: _App2.default.category,
           onClick: this.handleCategoryClick.bind(this, "none") },
         '\u0411\u0435\u0437 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438'
       ));
-      console.log(categories);
       return _react2.default.createElement(
         'div',
         null,
         _react2.default.createElement(
           'div',
-          { className: _App2.default.whole },
+          { className: _App2.default.app },
           _react2.default.createElement(
-            'div',
-            { className: _App2.default.header },
+            _antd.Row,
+            { type: 'flex', justify: 'right', align: 'top' },
             _react2.default.createElement(
-              'div',
-              { className: _App2.default.logo },
-              'My-app'
+              _antd.Col,
+              { span: 4 },
+              _react2.default.createElement(
+                'div',
+                { className: _App2.default.logo },
+                'My-app'
+              )
             ),
             _react2.default.createElement(
-              'div',
-              { className: _App2.default.addingButtons },
+              _antd.Col,
+              { span: 8 },
               _react2.default.createElement(_AddGood2.default, { cats: this.props.categories,
                 addGoodHandler: this.addGoodHandler.bind(this) }),
-              _react2.default.createElement(_AddCategory2.default, null)
+              _react2.default.createElement(_AddCategory2.default, { cats: this.props.categories,
+                addCatHandler: this.addCatHandler.bind(this) })
             )
           ),
           _react2.default.createElement(
             'div',
             { className: _App2.default.data },
             _react2.default.createElement(
-              'div',
-              { className: _App2.default.categories },
-              categories
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: _App2.default.goods },
-              _react2.default.createElement(_GoodTable2.default, { currentCategoryId: this.props.currentCategoryId,
-                goods: this.props.goods, cats: this.props.categories,
-                updGoodHandler: this.updGoodHandler.bind(this)
-              })
+              _antd.Row,
+              { type: 'flex', justify: 'right', align: 'top' },
+              _react2.default.createElement(
+                _antd.Col,
+                { span: 4 },
+                _react2.default.createElement(
+                  'div',
+                  { className: _App2.default.categories },
+                  categories
+                )
+              ),
+              _react2.default.createElement(
+                _antd.Col,
+                { span: 12 },
+                _react2.default.createElement(_GoodTable2.default, {
+                  currentCategoryId: this.props.currentCategoryId,
+                  goods: this.props.goods, cats: this.props.categories,
+                  updGoodHandler: this.updGoodHandler.bind(this),
+                  deleteGoodHandler: this.deleteGoodHandler.bind(this) })
+              )
             )
           )
         )
@@ -106699,7 +106852,6 @@ var App = function (_React$Component) {
 }(_react2.default.Component);
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  console.log(state);
   return {
     goods: state.api.goods,
     categories: state.api.categories,
@@ -106708,7 +106860,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 };
 exports.default = (0, _reactRedux.connect)(mapStateToProps)(App);
 
-},{"./_App.css":1153,"antd":54,"components/AddCategory":1148,"components/AddGood":1149,"components/GoodTable":1152,"react":1130,"react-redux":1088,"redux/modules/api":1156}],1155:[function(require,module,exports){
+},{"./_App.css":1155,"antd":54,"components/AddCategory":1148,"components/AddGood":1149,"components/DeleteCategory":1151,"components/GoodTable":1154,"react":1130,"react-redux":1088,"redux/modules/api":1158}],1157:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -106749,7 +106901,7 @@ var store = (0, _redux.createStore)(inventoryState, (0, _redux.applyMiddleware)(
   _react2.default.createElement(_App2.default, null)
 ), document.getElementById('container'));
 
-},{"./containers/App":1154,"./redux/modules/api":1156,"babel-polyfill":145,"react":1130,"react-dom":949,"react-redux":1088,"redux":1137,"redux-thunk":1131}],1156:[function(require,module,exports){
+},{"./containers/App":1156,"./redux/modules/api":1158,"babel-polyfill":145,"react":1130,"react-dom":949,"react-redux":1088,"redux":1137,"redux-thunk":1131}],1158:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -106762,8 +106914,11 @@ exports.default = api;
 exports.getGoods = getGoods;
 exports.getCategories = getCategories;
 exports.addGood = addGood;
+exports.addCategory = addCategory;
 exports.setCategory = setCategory;
 exports.changeGood = changeGood;
+exports.deleteGood = deleteGood;
+exports.deleteCategory = deleteCategory;
 
 var _isomorphicFetch = require('isomorphic-fetch');
 
@@ -106773,13 +106928,26 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var ADD_GOOD = 'ADD_GOOD';
 var ADD_GOOD_SUCCESS = 'ADD_GOOD_SUCCESS';
+
 var GET_GOODS = 'GET_GOODS';
 var GET_GOODS_SUCCESS = 'GET_GOODS_SUCCESS';
+
 var GET_CATEGORIES = 'GET_CATEGORIES';
 var GET_CATEGORIES_SUCCESS = 'GET_CATEGORIES_SUCCESS';
+
 var SET_CATEGORY_SUCCESS = 'SET_CATEGORY_SUCCESS';
+
 var CHANGE_GOOD = 'CHANGE_GOOD';
 var CHANGE_GOOD_SUCCESS = 'CHANGE_GOOD_SUCCESS';
+
+var DELETE_GOOD = 'DELETE_GOOD';
+var DELETE_GOOD_SUCCESS = 'DELETE_GOOD_SUCCESS';
+
+var ADD_CATEGORY = 'ADD_CATEGORY';
+var ADD_CATEGORY_SUCCESS = 'ADD_CATEGORY_SUCCESS';
+
+var DELETE_CATEGORY = 'DELETE_CATEGORY';
+var DELETE_CATEGORY_SUCCESS = 'DELETE_CATEGORY_SUCCESS';
 
 var initialState = {
   currentCategoryId: null,
@@ -106794,19 +106962,27 @@ function api() {
   switch (action.type) {
 
     case GET_GOODS:
-      console.log("goods are here");
-      console.log(action);
       return state;
+
     case GET_GOODS_SUCCESS:
       return _extends({}, state, {
         goods: action.goods
       });
+
     case ADD_GOOD_SUCCESS:
       var newGoods = state.goods.slice(0);
       newGoods.push(action.good);
       return _extends({}, state, {
         goods: newGoods
       });
+
+    case ADD_CATEGORY_SUCCESS:
+      var newCats = state.categories.slice(0);
+      newCats.push(action.category);
+      return _extends({}, state, {
+        categories: newCats
+      });
+
     case CHANGE_GOOD_SUCCESS:
       var changedGoods = state.goods.slice(0);
       var updGoods = changedGoods.filter(function (good) {
@@ -106820,16 +106996,60 @@ function api() {
       return _extends({}, state, {
         goods: updGoods
       });
+
+    case DELETE_GOOD_SUCCESS:
+      var leftGoods = state.goods.slice(0);
+      var left = leftGoods.filter(function (good) {
+        if (good._id === action.goodId) {
+          return false;
+        } else {
+          return true;
+        }
+      });
+      return _extends({}, state, {
+        goods: left
+      });
+
+    case DELETE_CATEGORY_SUCCESS:
+      var renewedGoods = state.categories.slice(0);
+      var renewed = renewedGoods.forEach(function (good) {
+        if (good.categoryId === action.catId) {
+          good.categoryId = null;
+        }
+      });
+      var leftCats = state.categories.slice(0);
+      var leftCategories = leftCats.filter(function (cat) {
+        if (cat._id === action.catId) {
+          return false;
+        } else {
+          return true;
+        }
+      });
+      var updCurId = void 0;
+      if (state.currentCategoryId === action.catId) {
+        updCurId = null;
+      } else if (state.currentCategoryId !== action.catId) {
+        updCurId = state.currentCategoryId;
+      }
+      return _extends({}, state, {
+        categories: leftCategories,
+        currentCategoryId: updCurId,
+        goods: renewed
+      });
+
     case GET_CATEGORIES:
       return state;
+
     case GET_CATEGORIES_SUCCESS:
       return _extends({}, state, {
         categories: action.categories
       });
+
     case SET_CATEGORY_SUCCESS:
       return _extends({}, state, {
         currentCategoryId: action.currentCategoryId
       });
+
     default:
       return state;
   }
@@ -106864,7 +107084,6 @@ function getCategories() {
 }
 
 function addGood(params) {
-  console.log(params);
   return function (dispatch, getState) {
     dispatch({ type: ADD_GOOD });
     var myHeaders = new Headers();
@@ -106888,6 +107107,30 @@ function addGood(params) {
   };
 }
 
+function addCategory(params) {
+  return function (dispatch, getState) {
+    dispatch({ type: ADD_CATEGORY });
+    var myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/json');
+    (0, _isomorphicFetch2.default)('/api/categories', {
+      method: 'post',
+      headers: myHeaders,
+      mode: 'cors',
+      cashe: 'default',
+      body: JSON.stringify({
+        category: { name: params.newCatName }
+      })
+    }).then(function (response) {
+      if (response.status >= 400) {
+        throw new Error("Bad response from server");
+      };
+      return response.json();
+    }).then(function (catResponse) {
+      dispatch({ type: ADD_CATEGORY_SUCCESS, category: catResponse.category });
+    });
+  };
+}
+
 function setCategory(params) {
   return function (dispatch, getState) {
     dispatch({ type: SET_CATEGORY_SUCCESS, currentCategoryId: params.categoryId });
@@ -106895,7 +107138,6 @@ function setCategory(params) {
 }
 
 function changeGood(params) {
-  console.log("params " + JSON.stringify(params));
   return function (dispatch, getState) {
     dispatch({ type: CHANGE_GOOD });
     var myHeaders = new Headers();
@@ -106917,10 +107159,42 @@ function changeGood(params) {
         throw new Error("Bad response from server");
       };
       return response.json();
-    }).then(function (updatedGood) {
-      dispatch({ type: CHANGE_GOOD_SUCCESS, good: updatedGood.good });
+    }).then(function (updatedGoodResponse) {
+      dispatch({ type: CHANGE_GOOD_SUCCESS, good: updatedGoodResponse.good });
     });
   };
 }
 
-},{"isomorphic-fetch":717}]},{},[1155]);
+function deleteGood(params) {
+  return function (dispatch, getState) {
+    dispatch({ type: DELETE_GOOD });
+    (0, _isomorphicFetch2.default)('/api/goods/' + params.delGoodId, {
+      method: 'delete'
+    }).then(function (response) {
+      if (response.status >= 400) {
+        throw new Error('Bad response from server');
+      };
+      return true;
+    }).then(function () {
+      dispatch({ type: DELETE_GOOD_SUCCESS, goodId: params.delGoodId });
+    });
+  };
+}
+
+function deleteCategory(params) {
+  return function (dispatch, getState) {
+    dispatch({ type: DELETE_CATEGORY });
+    (0, _isomorphicFetch2.default)('/api/categories/' + params.delCatId, {
+      method: 'delete'
+    }).then(function (response) {
+      if (response.status >= 400) {
+        throw new Error('Bad response from server');
+      };
+      return true;
+    }).then(function () {
+      dispatch({ type: DELETE_CATEGORY_SUCCESS, catId: params.delCatId });
+    });
+  };
+}
+
+},{"isomorphic-fetch":717}]},{},[1157]);
