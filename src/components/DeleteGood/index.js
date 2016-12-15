@@ -10,6 +10,7 @@ const DeleteGood = React.createClass( {
        message.success('Товар удален');
     },
 
+
     cancel() {
       message.error('Товар остался в базе');
     },

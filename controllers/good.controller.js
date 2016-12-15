@@ -67,7 +67,7 @@ export function editGood(req, res) {
 // Delete a good
 
 export function deleteGood(req, res) {
-  Good.findOne({ cuid: req.params.cuid }).exec((err, good) => {
+  Good.findOne({ _id: req.params.id }).exec((err, good) => {
 
     if (err) {
       res.status(500).send(err);
