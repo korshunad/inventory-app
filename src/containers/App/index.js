@@ -81,14 +81,14 @@ class App extends React.Component {
   
   render() {
     const self=this
-    const truncate = function(string) {
+    const truncate = (string) => {
       if (string.length > 15)
         return string.substring(0,15)+'...';
       else
         return string;
     }
     const categories = [];
-    this.props.categories.forEach(function(cat) {
+    this.props.categories.forEach((cat) => {
       const category = (
           <div styles={{margin:60}} key={cat._id}>
             <DeleteCategory className={styles.deleteCategory} 

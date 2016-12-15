@@ -2,18 +2,22 @@ import React from 'react'
 
 import { Popconfirm, message, Button, Popcancel } from 'antd';
 
-const DeleteGood = React.createClass( {
-
+class DeleteGood extends React.Component {
+    constructor(props) {
+      super(props);
+      this.agree=this.agree.bind(this);
+      this.cancel=this.cancel.bind(this);
+    }
     agree() {
        this.props.deleteGoodHandler({
        delGoodId: this.props.goodId   })
        message.success('Товар удален');
-    },
+    }
 
 
     cancel() {
       message.error('Товар остался в базе');
-    },
+    }
     render() {
       return (
   <Popconfirm title={"Точно удалить товар id"+this.props.goodId+"?"} 
@@ -25,7 +29,7 @@ const DeleteGood = React.createClass( {
         
       )
     }
-})
+}
 
 export default DeleteGood
 

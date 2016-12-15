@@ -3,17 +3,23 @@ import { Input, Modal, Button, Select } from 'antd';
 
 const Option = Select.Option;
 
-const ChangeGood = React.createClass({
-  getInitialState() {
-    return {
-      visible: false,
-    };
-  },
+class ChangeGood extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = { visible: false }
+    this.showModal=this.showModal.bind(this);
+    this.handleOk=this.handleOk.bind(this);
+    this.handleCancel=this.handleCancel.bind(this);
+    this.handleNameChange=this.handleNameChange.bind(this);
+    this.handlePurchaseChange=this.handlePurchaseChange.bind(this);
+    this.handleRetailChange=this.handleRetailChange.bind(this);
+    this.handleCategoryChoice=this.handleCategoryChoice.bind(this);
+  }
   showModal() {
     this.setState({
       visible: true,
     });
-  },
+  }
   handleOk() {
     this.props.updGoodHandler({
       updGoodName: this.state.updGoodName, 
@@ -31,24 +37,24 @@ const ChangeGood = React.createClass({
         confirmLoading: false,
       });
     }, 500);
-  },
+  }
   handleCancel() {
     this.setState({
       visible: false,
     });
-  },
+  }
   handleNameChange(e) {
     this.setState({updGoodName: e.target.value});
-  },
+  }
   handlePurchaseChange(e) {
     this.setState({updPurchasingPrice: e.target.value});
-  },
+  }
   handleRetailChange(e) {
     this.setState({updRetailPrice: e.target.value});
-  },
+  }
   handleCategoryChoice(value) {
     this.setState({updCatId: value});
-  },
+  }
   render() {
     const options = [];
     this.props.cats.forEach(function(category) {
@@ -102,7 +108,7 @@ const ChangeGood = React.createClass({
         </Modal>
       </div>
     );
-  },
-});
+  }
+};
 
 export default ChangeGood

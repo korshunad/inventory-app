@@ -105997,6 +105997,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -106005,72 +106007,102 @@ var _antd = require('antd');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var AddCategory = _react2.default.createClass({
-  displayName: 'AddCategory',
-  getInitialState: function getInitialState() {
-    return {
-      visible: false
-    };
-  },
-  showModal: function showModal() {
-    this.setState({
-      visible: true
-    });
-  },
-  handleOk: function handleOk() {
-    var _this = this;
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    this.props.addCatHandler({
-      newCatName: this.state.newCatName
-    });
-    this.setState({
-      confirmLoading: true
-    });
-    setTimeout(function () {
-      _this.setState({
-        visible: false,
-        confirmLoading: false
-      });
-    }, 500);
-  },
-  handleCancel: function handleCancel() {
-    this.setState({
-      visible: false
-    });
-  },
-  handleCatNameChange: function handleCatNameChange(e) {
-    this.setState({ newCatName: e.target.value });
-  },
-  render: function render() {
-    return _react2.default.createElement(
-      'div',
-      { style: { width: 60, display: "inline", padding: 10 } },
-      _react2.default.createElement(
-        _antd.Button,
-        { type: 'primary', size: 'large', onClick: this.showModal },
-        '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044E'
-      ),
-      _react2.default.createElement(
-        _antd.Modal,
-        { title: '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044E',
-          visible: this.state.visible,
-          onOk: this.handleOk,
-          confirmLoading: this.state.confirmLoading,
-          onCancel: this.handleCancel,
-          okText: '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C',
-          cancelText: '\u041E\u0442\u043C\u0435\u043D\u0430',
-          width: '300'
-        },
-        _react2.default.createElement(
-          'label',
-          null,
-          '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435'
-        ),
-        _react2.default.createElement(_antd.Input, { onChange: this.handleCatNameChange, size: 'large' })
-      )
-    );
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var AddCategory = function (_React$Component) {
+  _inherits(AddCategory, _React$Component);
+
+  function AddCategory(props) {
+    _classCallCheck(this, AddCategory);
+
+    var _this = _possibleConstructorReturn(this, (AddCategory.__proto__ || Object.getPrototypeOf(AddCategory)).call(this, props));
+
+    _this.state = { visible: false };
+    _this.showModal = _this.showModal.bind(_this);
+    _this.handleOk = _this.handleOk.bind(_this);
+    _this.handleCancel = _this.handleCancel.bind(_this);
+    _this.handleCatNameChange = _this.handleCatNameChange.bind(_this);
+    return _this;
   }
-});
+
+  _createClass(AddCategory, [{
+    key: 'showModal',
+    value: function showModal() {
+      this.setState({
+        visible: true
+      });
+    }
+  }, {
+    key: 'handleOk',
+    value: function handleOk() {
+      var _this2 = this;
+
+      this.props.addCatHandler({
+        newCatName: this.state.newCatName
+      });
+      this.setState({
+        confirmLoading: true
+      });
+      setTimeout(function () {
+        _this2.setState({
+          visible: false,
+          confirmLoading: false
+        });
+      }, 500);
+    }
+  }, {
+    key: 'handleCancel',
+    value: function handleCancel() {
+      this.setState({
+        visible: false
+      });
+    }
+  }, {
+    key: 'handleCatNameChange',
+    value: function handleCatNameChange(e) {
+      this.setState({ newCatName: e.target.value });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { style: { width: 60, display: "inline", padding: 10 } },
+        _react2.default.createElement(
+          _antd.Button,
+          { type: 'primary', size: 'large', onClick: this.showModal },
+          '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044E'
+        ),
+        _react2.default.createElement(
+          _antd.Modal,
+          { title: '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044E',
+            visible: this.state.visible,
+            onOk: this.handleOk,
+            confirmLoading: this.state.confirmLoading,
+            onCancel: this.handleCancel,
+            okText: '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C',
+            cancelText: '\u041E\u0442\u043C\u0435\u043D\u0430',
+            width: '300'
+          },
+          _react2.default.createElement(
+            'label',
+            null,
+            '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435'
+          ),
+          _react2.default.createElement(_antd.Input, { onChange: this.handleCatNameChange, size: 'large' })
+        )
+      );
+    }
+  }]);
+
+  return AddCategory;
+}(_react2.default.Component);
+
+;
 
 exports.default = AddCategory;
 
@@ -106081,6 +106113,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -106089,123 +106123,169 @@ var _antd = require('antd');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 var Option = _antd.Select.Option;
 
-var AddGood = _react2.default.createClass({
-  displayName: 'AddGood',
-  getInitialState: function getInitialState() {
-    return {
-      visible: false
-    };
-  },
-  showModal: function showModal() {
-    this.setState({
-      visible: true
-    });
-  },
-  handleOk: function handleOk() {
-    var _this = this;
+var AddGood = function (_React$Component) {
+  _inherits(AddGood, _React$Component);
 
-    this.props.addGoodHandler({
-      newGoodName: this.state.newGoodName,
-      newPurchased: this.state.newPurchased,
-      newRetail: this.state.newRetail,
-      newCatId: this.state.newCatId
-    });
-    this.setState({
-      confirmLoading: true
-    });
-    setTimeout(function () {
-      _this.setState({
-        visible: false,
-        confirmLoading: false
-      });
-    }, 500);
-  },
-  handleCancel: function handleCancel() {
-    this.setState({
-      visible: false
-    });
-  },
-  handleNameChange: function handleNameChange(e) {
-    this.setState({ newGoodName: e.target.value });
-  },
-  handlePurchaseChange: function handlePurchaseChange(e) {
-    this.setState({ newPurchased: e.target.value });
-  },
-  handleRetailChange: function handleRetailChange(e) {
-    this.setState({ newRetail: e.target.value });
-  },
-  handleCategoryChoice: function handleCategoryChoice(value) {
-    this.setState({ newCatId: value });
-  },
-  render: function render() {
-    var options = [];
-    this.props.cats.forEach(function (category) {
-      var option = _react2.default.createElement(
-        Option,
-        { key: category._id },
-        category.name
-      );
-      options.push(option);
-    });
-    return _react2.default.createElement(
-      'div',
-      { style: { width: 60, display: "inline", padding: 10 } },
-      _react2.default.createElement(
-        _antd.Button,
-        { type: 'primary', size: 'large', onClick: this.showModal },
-        '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440'
-      ),
-      _react2.default.createElement(
-        _antd.Modal,
-        { title: '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440',
-          visible: this.state.visible,
-          onOk: this.handleOk,
-          confirmLoading: this.state.confirmLoading,
-          onCancel: this.handleCancel,
-          okText: '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C',
-          cancelText: '\u041E\u0442\u043C\u0435\u043D\u0430',
-          width: '300'
-        },
-        _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement(
-            _antd.Select,
-            { defaultValue: '\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F',
-              style: { width: 270 },
-              size: 'large',
-              onChange: this.handleCategoryChoice
-            },
-            options
-          )
-        ),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'label',
-          null,
-          '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435'
-        ),
-        _react2.default.createElement(_antd.Input, { onChange: this.handleNameChange, size: 'large' }),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'label',
-          null,
-          '\u0417\u0430\u043A\u0443\u043F\u043E\u0447\u043D\u0430\u044F \u0441\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C'
-        ),
-        _react2.default.createElement(_antd.Input, { onChange: this.handlePurchaseChange, size: 'large' }),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'label',
-          null,
-          '\u0420\u043E\u0437\u043D\u0438\u0447\u043D\u0430\u044F \u0446\u0435\u043D\u0430'
-        ),
-        _react2.default.createElement(_antd.Input, { onChange: this.handleRetailChange, size: 'large' })
-      )
-    );
+  function AddGood(props) {
+    _classCallCheck(this, AddGood);
+
+    var _this = _possibleConstructorReturn(this, (AddGood.__proto__ || Object.getPrototypeOf(AddGood)).call(this, props));
+
+    _this.state = { visible: false };
+    _this.showModal = _this.showModal.bind(_this);
+    _this.handleOk = _this.handleOk.bind(_this);
+    _this.handleCancel = _this.handleCancel.bind(_this);
+    _this.handleNameChange = _this.handleNameChange.bind(_this);
+    _this.handlePurchaseChange = _this.handlePurchaseChange.bind(_this);
+    _this.handleRetailChange = _this.handleRetailChange.bind(_this);
+    _this.handleCategoryChoice = _this.handleCategoryChoice.bind(_this);
+    return _this;
   }
-});
+
+  _createClass(AddGood, [{
+    key: 'getInitialState',
+    value: function getInitialState() {
+      return {
+        visible: false
+      };
+    }
+  }, {
+    key: 'showModal',
+    value: function showModal() {
+      this.setState({
+        visible: true
+      });
+    }
+  }, {
+    key: 'handleOk',
+    value: function handleOk() {
+      var _this2 = this;
+
+      this.props.addGoodHandler({
+        newGoodName: this.state.newGoodName,
+        newPurchased: this.state.newPurchased,
+        newRetail: this.state.newRetail,
+        newCatId: this.state.newCatId
+      });
+      this.setState({
+        confirmLoading: true
+      });
+      setTimeout(function () {
+        _this2.setState({
+          visible: false,
+          confirmLoading: false
+        });
+      }, 500);
+    }
+  }, {
+    key: 'handleCancel',
+    value: function handleCancel() {
+      this.setState({
+        visible: false
+      });
+    }
+  }, {
+    key: 'handleNameChange',
+    value: function handleNameChange(e) {
+      this.setState({ newGoodName: e.target.value });
+    }
+  }, {
+    key: 'handlePurchaseChange',
+    value: function handlePurchaseChange(e) {
+      this.setState({ newPurchased: e.target.value });
+    }
+  }, {
+    key: 'handleRetailChange',
+    value: function handleRetailChange(e) {
+      this.setState({ newRetail: e.target.value });
+    }
+  }, {
+    key: 'handleCategoryChoice',
+    value: function handleCategoryChoice(value) {
+      this.setState({ newCatId: value });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var options = [];
+      this.props.cats.forEach(function (category) {
+        var option = _react2.default.createElement(
+          Option,
+          { key: category._id },
+          category.name
+        );
+        options.push(option);
+      });
+      return _react2.default.createElement(
+        'div',
+        { style: { width: 60, display: "inline", padding: 10 } },
+        _react2.default.createElement(
+          _antd.Button,
+          { type: 'primary', size: 'large', onClick: this.showModal },
+          '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440'
+        ),
+        _react2.default.createElement(
+          _antd.Modal,
+          { title: '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440',
+            visible: this.state.visible,
+            onOk: this.handleOk,
+            confirmLoading: this.state.confirmLoading,
+            onCancel: this.handleCancel,
+            okText: '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C',
+            cancelText: '\u041E\u0442\u043C\u0435\u043D\u0430',
+            width: '300'
+          },
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              _antd.Select,
+              { defaultValue: '\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F',
+                style: { width: 270 },
+                size: 'large',
+                onChange: this.handleCategoryChoice
+              },
+              options
+            )
+          ),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(
+            'label',
+            null,
+            '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435'
+          ),
+          _react2.default.createElement(_antd.Input, { onChange: this.handleNameChange, size: 'large' }),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(
+            'label',
+            null,
+            '\u0417\u0430\u043A\u0443\u043F\u043E\u0447\u043D\u0430\u044F \u0441\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C'
+          ),
+          _react2.default.createElement(_antd.Input, { onChange: this.handlePurchaseChange, size: 'large' }),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(
+            'label',
+            null,
+            '\u0420\u043E\u0437\u043D\u0438\u0447\u043D\u0430\u044F \u0446\u0435\u043D\u0430'
+          ),
+          _react2.default.createElement(_antd.Input, { onChange: this.handleRetailChange, size: 'large' })
+        )
+      );
+    }
+  }]);
+
+  return AddGood;
+}(_react2.default.Component);
+
+;
 
 exports.default = AddGood;
 
@@ -106216,6 +106296,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -106224,135 +106306,174 @@ var _antd = require('antd');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 var Option = _antd.Select.Option;
 
-var ChangeGood = _react2.default.createClass({
-  displayName: 'ChangeGood',
-  getInitialState: function getInitialState() {
-    return {
-      visible: false
-    };
-  },
-  showModal: function showModal() {
-    this.setState({
-      visible: true
-    });
-  },
-  handleOk: function handleOk() {
-    var _this = this;
+var ChangeGood = function (_React$Component) {
+  _inherits(ChangeGood, _React$Component);
 
-    this.props.updGoodHandler({
-      updGoodName: this.state.updGoodName,
-      updPurchasingPrice: this.state.updPurchasingPrice,
-      updRetailPrice: this.state.updRetailPrice,
-      updCatId: this.state.updCatId,
-      updGoodId: this.props.goodId
-    });
-    this.setState({
-      confirmLoading: true
-    });
-    setTimeout(function () {
-      _this.setState({
-        visible: false,
-        confirmLoading: false
-      });
-    }, 500);
-  },
-  handleCancel: function handleCancel() {
-    this.setState({
-      visible: false
-    });
-  },
-  handleNameChange: function handleNameChange(e) {
-    this.setState({ updGoodName: e.target.value });
-  },
-  handlePurchaseChange: function handlePurchaseChange(e) {
-    this.setState({ updPurchasingPrice: e.target.value });
-  },
-  handleRetailChange: function handleRetailChange(e) {
-    this.setState({ updRetailPrice: e.target.value });
-  },
-  handleCategoryChoice: function handleCategoryChoice(value) {
-    this.setState({ updCatId: value });
-  },
-  render: function render() {
-    var options = [];
-    this.props.cats.forEach(function (category) {
-      var option = _react2.default.createElement(
-        Option,
-        { key: category._id },
-        category.name
-      );
-      options.push(option);
-    });
-    return _react2.default.createElement(
-      'div',
-      { style: { width: 60, display: "inline", padding: 10 } },
-      _react2.default.createElement(
-        _antd.Button,
-        { type: 'primary', size: 'large', onClick: this.showModal },
-        '\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440'
-      ),
-      _react2.default.createElement(
-        _antd.Modal,
-        { title: '\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440',
-          visible: this.state.visible,
-          onOk: this.handleOk,
-          confirmLoading: this.state.confirmLoading,
-          onCancel: this.handleCancel,
-          okText: '\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C',
-          cancelText: '\u041E\u0442\u043C\u0435\u043D\u0430',
-          width: '300'
-        },
-        _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement(
-            _antd.Select,
-            {
-              defaultValue: this.props.categoryId,
-              style: { width: 270 },
+  function ChangeGood(props) {
+    _classCallCheck(this, ChangeGood);
 
-              size: 'large',
-              onChange: this.handleCategoryChoice
-            },
-            options
-          )
-        ),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'label',
-          null,
-          '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435'
-        ),
-        _react2.default.createElement(_antd.Input, {
-          defaultValue: this.props.goodName,
-          onChange: this.handleNameChange,
-          size: 'large' }),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'label',
-          null,
-          '\u0417\u0430\u043A\u0443\u043F\u043E\u0447\u043D\u0430\u044F \u0441\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C'
-        ),
-        _react2.default.createElement(_antd.Input, {
-          defaultValue: this.props.goodPurchased,
-          onChange: this.handlePurchaseChange,
-          size: 'large' }),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement(
-          'label',
-          null,
-          '\u0420\u043E\u0437\u043D\u0438\u0447\u043D\u0430\u044F \u0446\u0435\u043D\u0430'
-        ),
-        _react2.default.createElement(_antd.Input, {
-          defaultValue: this.props.goodRetail,
-          onChange: this.handleRetailChange,
-          size: 'large' })
-      )
-    );
+    var _this = _possibleConstructorReturn(this, (ChangeGood.__proto__ || Object.getPrototypeOf(ChangeGood)).call(this, props));
+
+    _this.state = { visible: false };
+    _this.showModal = _this.showModal.bind(_this);
+    _this.handleOk = _this.handleOk.bind(_this);
+    _this.handleCancel = _this.handleCancel.bind(_this);
+    _this.handleNameChange = _this.handleNameChange.bind(_this);
+    _this.handlePurchaseChange = _this.handlePurchaseChange.bind(_this);
+    _this.handleRetailChange = _this.handleRetailChange.bind(_this);
+    _this.handleCategoryChoice = _this.handleCategoryChoice.bind(_this);
+    return _this;
   }
-});
+
+  _createClass(ChangeGood, [{
+    key: 'showModal',
+    value: function showModal() {
+      this.setState({
+        visible: true
+      });
+    }
+  }, {
+    key: 'handleOk',
+    value: function handleOk() {
+      var _this2 = this;
+
+      this.props.updGoodHandler({
+        updGoodName: this.state.updGoodName,
+        updPurchasingPrice: this.state.updPurchasingPrice,
+        updRetailPrice: this.state.updRetailPrice,
+        updCatId: this.state.updCatId,
+        updGoodId: this.props.goodId
+      });
+      this.setState({
+        confirmLoading: true
+      });
+      setTimeout(function () {
+        _this2.setState({
+          visible: false,
+          confirmLoading: false
+        });
+      }, 500);
+    }
+  }, {
+    key: 'handleCancel',
+    value: function handleCancel() {
+      this.setState({
+        visible: false
+      });
+    }
+  }, {
+    key: 'handleNameChange',
+    value: function handleNameChange(e) {
+      this.setState({ updGoodName: e.target.value });
+    }
+  }, {
+    key: 'handlePurchaseChange',
+    value: function handlePurchaseChange(e) {
+      this.setState({ updPurchasingPrice: e.target.value });
+    }
+  }, {
+    key: 'handleRetailChange',
+    value: function handleRetailChange(e) {
+      this.setState({ updRetailPrice: e.target.value });
+    }
+  }, {
+    key: 'handleCategoryChoice',
+    value: function handleCategoryChoice(value) {
+      this.setState({ updCatId: value });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var options = [];
+      this.props.cats.forEach(function (category) {
+        var option = _react2.default.createElement(
+          Option,
+          { key: category._id },
+          category.name
+        );
+        options.push(option);
+      });
+      return _react2.default.createElement(
+        'div',
+        { style: { width: 60, display: "inline", padding: 10 } },
+        _react2.default.createElement(
+          _antd.Button,
+          { type: 'primary', size: 'large', onClick: this.showModal },
+          '\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440'
+        ),
+        _react2.default.createElement(
+          _antd.Modal,
+          { title: '\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440',
+            visible: this.state.visible,
+            onOk: this.handleOk,
+            confirmLoading: this.state.confirmLoading,
+            onCancel: this.handleCancel,
+            okText: '\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C',
+            cancelText: '\u041E\u0442\u043C\u0435\u043D\u0430',
+            width: '300'
+          },
+          _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+              _antd.Select,
+              {
+                defaultValue: this.props.categoryId,
+                style: { width: 270 },
+
+                size: 'large',
+                onChange: this.handleCategoryChoice
+              },
+              options
+            )
+          ),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(
+            'label',
+            null,
+            '\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435'
+          ),
+          _react2.default.createElement(_antd.Input, {
+            defaultValue: this.props.goodName,
+            onChange: this.handleNameChange,
+            size: 'large' }),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(
+            'label',
+            null,
+            '\u0417\u0430\u043A\u0443\u043F\u043E\u0447\u043D\u0430\u044F \u0441\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C'
+          ),
+          _react2.default.createElement(_antd.Input, {
+            defaultValue: this.props.goodPurchased,
+            onChange: this.handlePurchaseChange,
+            size: 'large' }),
+          _react2.default.createElement('br', null),
+          _react2.default.createElement(
+            'label',
+            null,
+            '\u0420\u043E\u0437\u043D\u0438\u0447\u043D\u0430\u044F \u0446\u0435\u043D\u0430'
+          ),
+          _react2.default.createElement(_antd.Input, {
+            defaultValue: this.props.goodRetail,
+            onChange: this.handleRetailChange,
+            size: 'large' })
+        )
+      );
+    }
+  }]);
+
+  return ChangeGood;
+}(_react2.default.Component);
+
+;
 
 exports.default = ChangeGood;
 
@@ -106363,6 +106484,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -106371,55 +106494,84 @@ var _antd = require('antd');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var DeleteCategory = _react2.default.createClass({
-  displayName: 'DeleteCategory',
-  getInitialState: function getInitialState() {
-    return { visible: false };
-  },
-  showModal: function showModal() {
-    this.setState({
-      visible: true
-    });
-  },
-  handleOk: function handleOk() {
-    this.props.deleteCatHandler();
-    this.setState({
-      visible: false
-    });
-  },
-  handleCancel: function handleCancel(e) {
-    this.setState({
-      visible: false
-    });
-  },
-  render: function render() {
-    return _react2.default.createElement(
-      'div',
-      { style: { width: 100, display: "inline" } },
-      _react2.default.createElement(
-        _antd.Button,
-        { type: 'ghost',
-          style: { margin: 5 },
-          onClick: this.showModal },
-        'X'
-      ),
-      _react2.default.createElement(
-        _antd.Modal,
-        { title: '\u0425\u043E\u0442\u0438\u0442\u0435 \u0443\u0434\u0430\u043B\u0438\u0442\u044C \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044E?',
-          visible: this.state.visible,
-          onOk: this.handleOk,
-          onCancel: this.handleCancel,
-          okText: '\u0414\u0430', cancelText: '\u041D\u0435\u0442'
-        },
-        _react2.default.createElement(
-          'p',
-          null,
-          '\u0412\u0441\u0435 \u0442\u043E\u0432\u0430\u0440\u044B \u0432 \u044D\u0442\u043E\u0439 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438 \u0431\u0443\u0434\u0443\u0442 \u043F\u043E\u043C\u0435\u0447\u0435\u043D\u044B "\u0411\u0435\u0437 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438"'
-        )
-      )
-    );
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var DeleteCategory = function (_React$Component) {
+  _inherits(DeleteCategory, _React$Component);
+
+  function DeleteCategory(props) {
+    _classCallCheck(this, DeleteCategory);
+
+    var _this = _possibleConstructorReturn(this, (DeleteCategory.__proto__ || Object.getPrototypeOf(DeleteCategory)).call(this, props));
+
+    _this.state = { visible: false };
+    _this.showModal = _this.showModal.bind(_this);
+    _this.handleOk = _this.handleOk.bind(_this);
+    _this.handleCancel = _this.handleCancel.bind(_this);
+    return _this;
   }
-});
+
+  _createClass(DeleteCategory, [{
+    key: 'showModal',
+    value: function showModal() {
+      this.setState({
+        visible: true
+      });
+    }
+  }, {
+    key: 'handleOk',
+    value: function handleOk() {
+      this.props.deleteCatHandler();
+      this.setState({
+        visible: false
+      });
+    }
+  }, {
+    key: 'handleCancel',
+    value: function handleCancel(e) {
+      this.setState({
+        visible: false
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { style: { width: 100, display: "inline" } },
+        _react2.default.createElement(
+          _antd.Button,
+          { type: 'ghost',
+            style: { margin: 5 },
+            onClick: this.showModal },
+          'X'
+        ),
+        _react2.default.createElement(
+          _antd.Modal,
+          { title: '\u0425\u043E\u0442\u0438\u0442\u0435 \u0443\u0434\u0430\u043B\u0438\u0442\u044C \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044E?',
+            visible: this.state.visible,
+            onOk: this.handleOk,
+            onCancel: this.handleCancel,
+            okText: '\u0414\u0430', cancelText: '\u041D\u0435\u0442'
+          },
+          _react2.default.createElement(
+            'p',
+            null,
+            '\u0412\u0441\u0435 \u0442\u043E\u0432\u0430\u0440\u044B \u0432 \u044D\u0442\u043E\u0439 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438 \u0431\u0443\u0434\u0443\u0442 \u043F\u043E\u043C\u0435\u0447\u0435\u043D\u044B "\u0411\u0435\u0437 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438"'
+          )
+        )
+      );
+    }
+  }]);
+
+  return DeleteCategory;
+}(_react2.default.Component);
+
+;
 
 exports.default = DeleteCategory;
 
@@ -106430,6 +106582,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -106438,35 +106592,61 @@ var _antd = require('antd');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var DeleteGood = _react2.default.createClass({
-  displayName: 'DeleteGood',
-  agree: function agree() {
-    this.props.deleteGoodHandler({
-      delGoodId: this.props.goodId });
-    _antd.message.success('Товар удален');
-  },
-  cancel: function cancel() {
-    _antd.message.error('Товар остался в базе');
-  },
-  render: function render() {
-    return _react2.default.createElement(
-      _antd.Popconfirm,
-      { title: "Точно удалить товар id" + this.props.goodId + "?",
-        onConfirm: this.agree,
-        onCancel: this.cancel,
-        okText: '\u0414\u0430', cancelText: '\u041D\u0435\u0442' },
-      _react2.default.createElement(
-        _antd.Button,
-        { size: 'large' },
-        _react2.default.createElement(
-          'a',
-          { href: '#' },
-          '\u0423\u0434\u0430\u043B\u0438\u0442\u044C'
-        )
-      )
-    );
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var DeleteGood = function (_React$Component) {
+  _inherits(DeleteGood, _React$Component);
+
+  function DeleteGood(props) {
+    _classCallCheck(this, DeleteGood);
+
+    var _this = _possibleConstructorReturn(this, (DeleteGood.__proto__ || Object.getPrototypeOf(DeleteGood)).call(this, props));
+
+    _this.agree = _this.agree.bind(_this);
+    _this.cancel = _this.cancel.bind(_this);
+    return _this;
   }
-});
+
+  _createClass(DeleteGood, [{
+    key: 'agree',
+    value: function agree() {
+      this.props.deleteGoodHandler({
+        delGoodId: this.props.goodId });
+      _antd.message.success('Товар удален');
+    }
+  }, {
+    key: 'cancel',
+    value: function cancel() {
+      _antd.message.error('Товар остался в базе');
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        _antd.Popconfirm,
+        { title: "Точно удалить товар id" + this.props.goodId + "?",
+          onConfirm: this.agree,
+          onCancel: this.cancel,
+          okText: '\u0414\u0430', cancelText: '\u041D\u0435\u0442' },
+        _react2.default.createElement(
+          _antd.Button,
+          { size: 'large' },
+          _react2.default.createElement(
+            'a',
+            { href: '#' },
+            '\u0423\u0434\u0430\u043B\u0438\u0442\u044C'
+          )
+        )
+      );
+    }
+  }]);
+
+  return DeleteGood;
+}(_react2.default.Component);
 
 exports.default = DeleteGood;
 

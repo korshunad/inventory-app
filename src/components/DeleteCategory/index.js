@@ -1,26 +1,30 @@
 import React from 'react'
 import { Modal, Button } from 'antd';
 
-const DeleteCategory = React.createClass({
-  getInitialState() {
-    return { visible: false };
-  },
+class DeleteCategory extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = { visible: false };
+    this.showModal=this.showModal.bind(this);
+    this.handleOk=this.handleOk.bind(this);
+    this.handleCancel=this.handleCancel.bind(this);
+  }
   showModal() {
     this.setState({
       visible: true,
     });
-  },
+  }
   handleOk() {
     this.props.deleteCatHandler()
     this.setState({
       visible: false,
     });
-  },
+  }
   handleCancel(e) {
     this.setState({
       visible: false,
     });
-  },
+  }
   render() {
     return (
       <div style={{width: 100, display: "inline"}}>
@@ -37,7 +41,7 @@ const DeleteCategory = React.createClass({
         </Modal>
       </div>
     );
-  },
-});
+  }
+};
 
 export default DeleteCategory

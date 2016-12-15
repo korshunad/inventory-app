@@ -1,17 +1,21 @@
 import React from 'react'
 import { Modal, Button, Input } from 'antd';
 
-const AddCategory = React.createClass({
-  getInitialState() {
-    return {
-      visible: false,
-    };
-  },
+class AddCategory extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = { visible: false };
+    this.showModal=this.showModal.bind(this);
+    this.handleOk=this.handleOk.bind(this);
+    this.handleCancel=this.handleCancel.bind(this);
+    this.handleCatNameChange=this.handleCatNameChange.bind(this);
+  }
+
   showModal() {
     this.setState({
       visible: true,
     });
-  },
+  }
   handleOk() {
     this.props.addCatHandler({
       newCatName: this.state.newCatName
@@ -25,15 +29,15 @@ const AddCategory = React.createClass({
         confirmLoading: false,
       });
     }, 500);
-  },
+  }
   handleCancel() {
     this.setState({
       visible: false,
     });
-  },
+  }
   handleCatNameChange(e) {
     this.setState({newCatName: e.target.value})
-  },
+  }
   render() {
     return (
       <div style={{width:60, display: "inline", padding: 10}}>
@@ -52,7 +56,7 @@ const AddCategory = React.createClass({
         </Modal>
       </div>
     );
-  },
-});
+  }
+};
 
 export default AddCategory
