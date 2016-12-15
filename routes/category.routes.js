@@ -5,8 +5,6 @@ const router = new Router();
 // Get all categories
 router.route('/categories').get(CategoryController.getCategories);
 
-// Get one category by id
-router.route('/categories/:id').get(CategoryController.getCategory);
 
 // Add a new category
 router.route('/categories').post(CategoryController.addCategory);

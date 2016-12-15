@@ -6,8 +6,6 @@ const router = new Router();
 // Get all goods
 router.route('/goods').get(GoodController.getGoods);
 
-// Get one good by id
-router.route('/goods/:id').get(GoodController.getGood);
 
 // Add a new good
 router.route('/goods').post(GoodController.addGood);

@@ -29,16 +29,6 @@ export function addGood(req, res) {
   });
 }
 
-// Get a single good
-
-export function getGood(req, res) {
-  Good.findOne({ _id: req.params.id }).exec((err, good) => {
-    if (err) {
-      res.status(500).send(err);
-    }
-    res.json({ good });
-  });
-}
 // Edit a good
 
 export function editGood(req, res) {

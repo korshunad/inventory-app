@@ -29,17 +29,6 @@ export function addCategory(req, res) {
   });
 }
 
-// Get a single category
-
-export function getCategory(req, res) {
-  Category.findOne({ _id: req.params.id }).exec((err, category) => {
-    if (err) {
-      res.status(500).send(err);
-    }
-    res.json({ category });
-  });
-}
-
 // Delete a category
 
 export function deleteCategory(req, res) {
