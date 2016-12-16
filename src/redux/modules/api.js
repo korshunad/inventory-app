@@ -23,10 +23,14 @@ const ADD_CATEGORY_SUCCESS = 'ADD_CATEGORY_SUCCESS'
 const DELETE_CATEGORY = 'DELETE_CATEGORY'
 const DELETE_CATEGORY_SUCCESS = 'DELETE_CATEGORY_SUCCESS'
 
+const SERVER_ERROR = 'SERVER_ERROR'
+const CLEAN_ERRORS = 'CLEAN_ERRORS'
+
 const initialState = {
   currentCategoryId: null,
   categories: [],
-  goods: []
+  goods: [],
+  errorMessage:null
 }
 
 export default function api (state = initialState, action = {}) {
@@ -122,6 +126,16 @@ export default function api (state = initialState, action = {}) {
         ...state,
         currentCategoryId: action.currentCategoryId
       }
+    case SERVER_ERROR:
+      return {
+        ...state,
+        errorMessage: action.message
+      }
+    case CLEAN_ERRORS:
+      return {
+        ...state,
+        errorMessage: null
+      }
     
     default:
       return state;
@@ -134,7 +148,7 @@ export function getGoods() {
     fetch('/api/goods', {method: 'get' })
       .then((response) =>  {
         if (response.status >= 400) {
-          throw new Error("Bad response from server");
+          dispatch({type: SERVER_ERROR, message: "Не удалось загрузить товары. Попробуйте перезагрузить страницу."})
         };
         return response.json();
       })
@@ -150,7 +164,7 @@ export function getCategories() {
     fetch('/api/categories', {method: 'get'})
       .then((response) => {
         if (response.status >= 400) {
-          throw new Error("Bad response from server");
+          dispatch({type: SERVER_ERROR, message: "Не удалось загрузить категории. Попробуйте перезагрузить страницу."})
         };
         return response.json();
       })
@@ -176,7 +190,7 @@ export function addGood(params) {
     })
     .then((response) => {
       if (response.status >=400) {
-        throw new Error("Bad Response from server");
+        dispatch({type: SERVER_ERROR, message: "Не удалось добавить товар. Проверьте правильность входных данных и их наличие."})
       };
       return response.json();
     })
@@ -203,7 +217,7 @@ export function addCategory(params) {
     })
     .then((response) => {
       if (response.status >=400) {
-        throw new Error("Bad response from server");
+        dispatch({type: SERVER_ERROR, message: "Не удалось добавить категорию. Проверьте правильность входных данных и их наличие."})
       };
       return response.json();
     })
@@ -239,7 +253,7 @@ export function changeGood(params) {
     })
     .then((response) => {
       if (response.status >=400) {
-        throw new Error("Bad response from server");
+        dispatch({type: SERVER_ERROR, message: "Не удалось изменить товар. Проверьте правильность входных данных и их наличие."})
       };
       return response.json();
     })
@@ -256,7 +270,7 @@ export function deleteGood(params) {
       method: 'delete'
     }).then((response) => {
       if (response.status >=400) {
-        throw new Error('Bad response from server');
+        dispatch({type: SERVER_ERROR, message: "Не удалось удалить товар. Перезагрузите страницу."})
       };
       return true;
     })
@@ -273,7 +287,7 @@ export function deleteCategory(params) {
       method: 'delete'
     }).then((response) => {
         if (response.status >=400) {
-          throw new Error('Bad response from server');
+          dispatch({type: SERVER_ERROR, message: "Не удалось удалить категорию. Перезагрузите страницу."})
         };
         return true;
     })
@@ -284,7 +298,11 @@ export function deleteCategory(params) {
 }
 
 
-
+export function cleanandclearerrors() {
+  return (dispatch, getState) => {
+    dispatch({type:CLEAN_ERRORS})
+  } 
+}
 
 
 

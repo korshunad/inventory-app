@@ -106972,6 +106972,15 @@ var App = function (_React$Component) {
           onClick: this.handleCategoryClick.bind(this, "none") },
         '\u0411\u0435\u0437 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438'
       ));
+
+      if (this.props.errorMessage) {
+        _antd.notification["error"]({
+          message: 'Ошибка',
+          description: this.props.errorMessage
+        });
+        this.props.dispatch((0, _api.cleanandclearerrors)());
+      }
+
       return _react2.default.createElement(
         'div',
         null,
@@ -107037,7 +107046,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     goods: state.api.goods,
     categories: state.api.categories,
-    currentCategoryId: state.api.currentCategoryId
+    currentCategoryId: state.api.currentCategoryId,
+    errorMessage: state.api.errorMessage
   };
 };
 exports.default = (0, _reactRedux.connect)(mapStateToProps)(App);
@@ -107101,6 +107111,7 @@ exports.setCategory = setCategory;
 exports.changeGood = changeGood;
 exports.deleteGood = deleteGood;
 exports.deleteCategory = deleteCategory;
+exports.cleanandclearerrors = cleanandclearerrors;
 
 var _isomorphicFetch = require('isomorphic-fetch');
 
@@ -107131,10 +107142,14 @@ var ADD_CATEGORY_SUCCESS = 'ADD_CATEGORY_SUCCESS';
 var DELETE_CATEGORY = 'DELETE_CATEGORY';
 var DELETE_CATEGORY_SUCCESS = 'DELETE_CATEGORY_SUCCESS';
 
+var SERVER_ERROR = 'SERVER_ERROR';
+var CLEAN_ERRORS = 'CLEAN_ERRORS';
+
 var initialState = {
   currentCategoryId: null,
   categories: [],
-  goods: []
+  goods: [],
+  errorMessage: null
 };
 
 function api() {
@@ -107231,6 +107246,14 @@ function api() {
       return _extends({}, state, {
         currentCategoryId: action.currentCategoryId
       });
+    case SERVER_ERROR:
+      return _extends({}, state, {
+        errorMessage: action.message
+      });
+    case CLEAN_ERRORS:
+      return _extends({}, state, {
+        errorMessage: null
+      });
 
     default:
       return state;
@@ -107242,7 +107265,7 @@ function getGoods() {
     dispatch({ type: GET_GOODS, foo: "yo" });
     (0, _isomorphicFetch2.default)('/api/goods', { method: 'get' }).then(function (response) {
       if (response.status >= 400) {
-        throw new Error("Bad response from server");
+        dispatch({ type: SERVER_ERROR, message: "Не удалось загрузить товары. Попробуйте перезагрузить страницу." });
       };
       return response.json();
     }).then(function (goodsResponse) {
@@ -107256,7 +107279,7 @@ function getCategories() {
     dispatch({ type: GET_CATEGORIES });
     (0, _isomorphicFetch2.default)('/api/categories', { method: 'get' }).then(function (response) {
       if (response.status >= 400) {
-        throw new Error("Bad response from server");
+        dispatch({ type: SERVER_ERROR, message: "Не удалось загрузить категории. Попробуйте перезагрузить страницу." });
       };
       return response.json();
     }).then(function (categoriesResponse) {
@@ -107280,7 +107303,7 @@ function addGood(params) {
       })
     }).then(function (response) {
       if (response.status >= 400) {
-        throw new Error("Bad Response from server");
+        dispatch({ type: SERVER_ERROR, message: "Не удалось добавить товар. Проверьте правильность входных данных и их наличие." });
       };
       return response.json();
     }).then(function (goodResponse) {
@@ -107304,7 +107327,7 @@ function addCategory(params) {
       })
     }).then(function (response) {
       if (response.status >= 400) {
-        throw new Error("Bad response from server");
+        dispatch({ type: SERVER_ERROR, message: "Не удалось добавить категорию. Проверьте правильность входных данных и их наличие." });
       };
       return response.json();
     }).then(function (catResponse) {
@@ -107338,7 +107361,7 @@ function changeGood(params) {
       })
     }).then(function (response) {
       if (response.status >= 400) {
-        throw new Error("Bad response from server");
+        dispatch({ type: SERVER_ERROR, message: "Не удалось изменить товар. Проверьте правильность входных данных и их наличие." });
       };
       return response.json();
     }).then(function (updatedGoodResponse) {
@@ -107354,7 +107377,7 @@ function deleteGood(params) {
       method: 'delete'
     }).then(function (response) {
       if (response.status >= 400) {
-        throw new Error('Bad response from server');
+        dispatch({ type: SERVER_ERROR, message: "Не удалось удалить товар. Перезагрузите страницу." });
       };
       return true;
     }).then(function () {
@@ -107370,12 +107393,18 @@ function deleteCategory(params) {
       method: 'delete'
     }).then(function (response) {
       if (response.status >= 400) {
-        throw new Error('Bad response from server');
+        dispatch({ type: SERVER_ERROR, message: "Не удалось удалить категорию. Перезагрузите страницу." });
       };
       return true;
     }).then(function () {
       dispatch({ type: DELETE_CATEGORY_SUCCESS, catId: params.delCatId });
     });
+  };
+}
+
+function cleanandclearerrors() {
+  return function (dispatch, getState) {
+    dispatch({ type: CLEAN_ERRORS });
   };
 }
 

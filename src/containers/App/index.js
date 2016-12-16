@@ -4,10 +4,9 @@ import AddCategory from 'components/AddCategory'
 import GoodTable from 'components/GoodTable'
 import DeleteCategory from 'components/DeleteCategory'
 import styles from './_App.css'
-import { Row, Col } from 'antd';
-import {Button} from 'antd'
+import {Button, notification, Row, Col} from 'antd'
 import { connect } from 'react-redux'
-import { getGoods, getCategories, addGood, addCategory, setCategory, changeGood, deleteGood, deleteCategory} from 'redux/modules/api'
+import { getGoods, getCategories, addGood, addCategory, setCategory, changeGood, deleteGood, deleteCategory, cleanandclearerrors} from 'redux/modules/api'
 
 
 class App extends React.Component {
@@ -107,7 +106,16 @@ class App extends React.Component {
             <div className={styles.category} 
               onClick={this.handleCategoryClick.bind(this, "none")} >
               Без категории</div>)
-   return (
+    
+    if (this.props.errorMessage) { 
+      notification["error"]({
+        message: 'Ошибка',
+        description: this.props.errorMessage
+      })
+      this.props.dispatch(cleanandclearerrors())
+    }
+   
+    return (
         <div>
          <div className={styles.app}>
           <Row type="flex" justify="right" align="top" >
@@ -147,7 +155,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     goods: state.api.goods,
     categories: state.api.categories,
-    currentCategoryId: state.api.currentCategoryId
+    currentCategoryId: state.api.currentCategoryId,
+    errorMessage: state.api.errorMessage
   };
 };
 export default connect(mapStateToProps)(App);
