@@ -6,7 +6,7 @@ import Good from '../models/good';
 export function getCategories(req, res) {
   Category.find().exec((err, categories) => {
     if (err) {
-      res.status(500).send(err);
+       return res.status(500).send(err);
     }
     res.json({ categories });
   });
@@ -16,14 +16,14 @@ export function getCategories(req, res) {
 
 export function addCategory(req, res) {
   if (!req.body.category.name) {
-    res.status(403).end();
+    return res.status(403).end();
   }
 
   const newCategory = new Category(req.body.category);
 
   newCategory.save((err, saved) => {
     if (err) {
-      res.status(500).send(err);
+      return res.status(500).send(err);
     }
     res.json({ category: saved });
   });
@@ -34,7 +34,7 @@ export function addCategory(req, res) {
 export function deleteCategory(req, res) {
   Category.findOne({ _id: req.params.id }).exec((findErr, category) => {
     if (findErr) {
-      res.status(500).send(findErr);
+      return res.status(500).send(findErr);
     }
 
     category.remove(() => {
@@ -42,7 +42,7 @@ export function deleteCategory(req, res) {
 
     Good.update({categoryId:req.params.id},{categoryId:null},{multi:true}, function(updateErr,affected) {
        if (updateErr) {
-         res.status(500).send(updateErr)
+        return res.status(500).send(updateErr)
        }
    
         res.status(200).end();
