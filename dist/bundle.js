@@ -106707,6 +106707,8 @@ var GoodTable = function (_React$Component) {
             return true;
           } else if (self.props.currentCategoryId === "none" && el.categoryId === null) {
             return true;
+          } else if (self.props.currentCategoryId === "none" && el.categoryId === undefined) {
+            return true;
           } else {
             return false;
           }

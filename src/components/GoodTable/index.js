@@ -13,7 +13,9 @@ class GoodTable extends React.Component {
         if (self.props.currentCategoryId === el.categoryId) {
           return true
         } else if (self.props.currentCategoryId === "none" && el.categoryId === null) {
-          return true;
+          return true
+        } else if (self.props.currentCategoryId === "none" && el.categoryId === undefined) {
+          return true 
         } else {
           return false
         }
