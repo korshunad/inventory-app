@@ -49,7 +49,7 @@ class AddCategory extends React.Component{
           onCancel={this.handleCancel}
           okText="Добавить"
           cancelText="Отмена"
-          width="300"
+          width="300px"
         >
         <label>Название</label> 
         <Input onChange={this.handleCatNameChange} size="large"/>

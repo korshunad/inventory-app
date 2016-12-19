@@ -89,7 +89,7 @@ class App extends React.Component {
     const categories = [];
     this.props.categories.forEach((cat) => {
       const category = (
-          <div styles={{margin:60}} key={cat._id}>
+          <div key={cat._id}>
             <DeleteCategory className={styles.deleteCategory} 
               cats={self.props.categories}
               deleteCatHandler={self.deleteCatHandler.bind(self, cat._id)} />
@@ -103,7 +103,7 @@ class App extends React.Component {
     });
 
     categories.push(
-            <div className={styles.category} 
+            <div key="undefined" className={styles.category} 
               onClick={this.handleCategoryClick.bind(this, "none")} >
               Без категории</div>)
     

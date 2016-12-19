@@ -14,11 +14,6 @@ class AddGood extends React.Component{
     this.handleRetailChange=this.handleRetailChange.bind(this);
     this.handleCategoryChoice=this.handleCategoryChoice.bind(this);
   }
-  getInitialState() {
-    return {
-      visible: false
-    };
-  }
   showModal() {
     this.setState({
       visible: true,
@@ -77,7 +72,7 @@ class AddGood extends React.Component{
           onCancel={this.handleCancel}
           okText="Добавить"
           cancelText="Отмена"
-          width="300"
+          width="300px"
         >
         <div>
            <Select defaultValue="Категория"  

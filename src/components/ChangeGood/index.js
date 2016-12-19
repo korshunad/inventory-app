@@ -74,7 +74,7 @@ class ChangeGood extends React.Component{
           onCancel={this.handleCancel}
           okText="Изменить"
           cancelText="Отмена"
-          width="300"
+          width="300px"
         >
         <div>
            <Select 

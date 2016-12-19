@@ -106071,7 +106071,7 @@ var AddCategory = function (_React$Component) {
             onCancel: this.handleCancel,
             okText: '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C',
             cancelText: '\u041E\u0442\u043C\u0435\u043D\u0430',
-            width: '300'
+            width: '300px'
           },
           _react2.default.createElement(
             'label',
@@ -106136,13 +106136,6 @@ var AddGood = function (_React$Component) {
   }
 
   _createClass(AddGood, [{
-    key: 'getInitialState',
-    value: function getInitialState() {
-      return {
-        visible: false
-      };
-    }
-  }, {
     key: 'showModal',
     value: function showModal() {
       this.setState({
@@ -106226,7 +106219,7 @@ var AddGood = function (_React$Component) {
             onCancel: this.handleCancel,
             okText: '\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C',
             cancelText: '\u041E\u0442\u043C\u0435\u043D\u0430',
-            width: '300'
+            width: '300px'
           },
           _react2.default.createElement(
             'div',
@@ -106403,7 +106396,7 @@ var ChangeGood = function (_React$Component) {
             onCancel: this.handleCancel,
             okText: '\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C',
             cancelText: '\u041E\u0442\u043C\u0435\u043D\u0430',
-            width: '300'
+            width: '300px'
           },
           _react2.default.createElement(
             'div',
@@ -106936,7 +106929,7 @@ var App = function (_React$Component) {
       this.props.categories.forEach(function (cat) {
         var category = _react2.default.createElement(
           'div',
-          { styles: { margin: 60 }, key: cat._id },
+          { key: cat._id },
           _react2.default.createElement(_DeleteCategory2.default, { className: _App2.default.deleteCategory,
             cats: self.props.categories,
             deleteCatHandler: self.deleteCatHandler.bind(self, cat._id) }),
@@ -106953,7 +106946,7 @@ var App = function (_React$Component) {
 
       categories.push(_react2.default.createElement(
         'div',
-        { className: _App2.default.category,
+        { key: 'undefined', className: _App2.default.category,
           onClick: this.handleCategoryClick.bind(this, "none") },
         '\u0411\u0435\u0437 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438'
       ));
