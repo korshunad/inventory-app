@@ -43144,6 +43144,13 @@ var ChangeGood = function (_React$Component) {
       this.setState({ updCatId: value });
     }
   }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      if (nextProps.categoryId != this.props.categoryId) {
+        console.log(nextProps.categoryId + "from componentwillreceiveprops");
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
       var options = [];
@@ -43155,6 +43162,7 @@ var ChangeGood = function (_React$Component) {
         );
         options.push(option);
       });
+      var givenCat = this.props.goodCatId;
       return _react2.default.createElement(
         'div',
         { style: { width: 60, display: "inline", padding: 10 } },
@@ -43180,7 +43188,7 @@ var ChangeGood = function (_React$Component) {
             _react2.default.createElement(
               _select2.default,
               {
-                defaultValue: this.props.categoryId,
+                defaultValue: givenCat,
                 style: { width: 270 },
 
                 size: 'large',

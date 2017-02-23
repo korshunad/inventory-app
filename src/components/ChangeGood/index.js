@@ -55,6 +55,11 @@ class ChangeGood extends React.Component{
   handleCategoryChoice(value) {
     this.setState({updCatId: value});
   }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.categoryId != this.props.categoryId) {
+      console.log(nextProps.categoryId+"from componentwillreceiveprops")
+    }
+  }
   render() {
     const options = [];
     this.props.cats.forEach(function(category) {
@@ -64,6 +69,7 @@ class ChangeGood extends React.Component{
         </Option>)
     options.push(option);
     });
+    let givenCat=this.props.goodCatId;
     return (
       <div style={{width:60, display: "inline", padding: 10}}>
         <Button type="primary" size="large"onClick={this.showModal}>Изменить товар</Button>
@@ -78,7 +84,7 @@ class ChangeGood extends React.Component{
         >
         <div>
            <Select 
-              defaultValue={this.props.categoryId}
+              defaultValue={givenCat}
              style={{ width: 270 }}
              
              size="large" 

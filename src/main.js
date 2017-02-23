@@ -17,7 +17,7 @@ let store = createStore(inventoryState, applyMiddleware(thunk));
 render(
   <Provider store={store} key='provider'>
     <App/>
-  </Provider>, 
+  </Provider>,
   document.getElementById('container')
 )
 
